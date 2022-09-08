@@ -2,7 +2,7 @@ import {
     StyleSheet,
 } from 'react-native';
 
-const styles = StyleSheet.create({
+const stylesGlobal = StyleSheet.create({
     //font style
     header1:{
         fontSize: 24,
@@ -129,4 +129,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default styles
+export default stylesGlobal
