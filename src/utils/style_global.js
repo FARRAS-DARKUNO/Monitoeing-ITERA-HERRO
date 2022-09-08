@@ -44,7 +44,7 @@ const stylesGlobal = StyleSheet.create({
     //Colorstyle
 
     primer:{
-        color:'#91C637',
+        color:'#09322D',
     },
     primaryVariant:{
         color:'#89BA35',
@@ -86,7 +86,7 @@ const stylesGlobal = StyleSheet.create({
     //background color
     
     backgroundPrimer:{
-        backgroundColor:'#91C637',
+        backgroundColor:'#09322D',
     },
     backgroundPrimaryVariant:{
         backgroundColor:'#89BA35',
