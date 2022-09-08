@@ -3,14 +3,16 @@ import {
     StyleSheet,
     View,
     Text,
+    TouchableOpacity,
 } from 'react-native';
+import styles from './monitoring_style';
 
 const MonitoringScreen = ({ navigation }) => {
     return (
-        <View>
-            <Text style={styles.container}>
-                Hello wordA
-            </Text>
+        <View style={styles.container}>
+            <TouchableOpacity style={styles.persenData}>
+
+            </TouchableOpacity>
         </View>
     );
 };

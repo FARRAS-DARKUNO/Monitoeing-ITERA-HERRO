@@ -9,10 +9,8 @@ import stylesGlobal from '../../utils/style_global';
 const BerandaPage = ({ navigation }) => {
     return (
         <View>
-            <Text style = {
-                stylesGlobal.primer
-            }>
-                Hello word
+            <Text >
+                Hello wordA
             </Text>
         </View>
     );
