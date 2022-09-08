@@ -17,15 +17,15 @@ const LoginPage = ({ navigation }) => {
           <View style={styles.content}>
             <Text style={[stylesGlobal.primer]}>Masuk</Text>
               <Formik
-                initialValues={{username: '', password: ''}}
+                initialValues={{email: '', password: ''}}
                 onSubmit={(values, actions) => {
                   loginUser(values);
                   actions.setSubmitting(false);
                 }}
                 validationSchema={Yup.object({
-                  username: Yup.string()
-                    .required('username dibutuhkan!')
-                    .min(3, 'username'),
+                  email: Yup.string()
+                    .required('Email dibutuhkan!')
+                    .min(3, 'email'),
                   password: Yup.string().required('Password dibutuhkan!'),
                 })}>
                 {formikProps => {
@@ -34,18 +34,18 @@ const LoginPage = ({ navigation }) => {
                   return (
                     <View>
                       <TextInput
-                        placeholder="Username"
-                        value={values.username}
+                        placeholder="Email"
+                        value={values.email}
                         underlineColorAndroid="transparent"
                         placeholderTextColor={'#c4c4c4'}
-                        keyboardType="username-address"
+                        keyboardType="email-address"
                         autoCapitalize="none"
-                        autoCompleteType="username"
-                        onChangeText={handleChange('username')}
-                        onBlur={handleBlur('username')}
+                        autoCompleteType="email"
+                        onChangeText={handleChange('email')}
+                        onBlur={handleBlur('email')}
                       />
-                      {errors.username ? (
-                        <Text style={stylesGlobal.error}>{errors.username}</Text>
+                      {errors.email ? (
+                        <Text style={stylesGlobal.error}>{errors.email}</Text>
                       ) : (
                         <Text style={stylesGlobal.error}></Text>
                       )}
