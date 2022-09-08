@@ -12,6 +12,7 @@ import stylesGlobal from '../../utils/style_global';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import BarMonitoring from '../../component/bar_monitoring';
 import BarControlling from '../../component/bar_controlling';
+import MonitoringScreen from '../../screen/monitoring/monitoring_screen';
 import { useDispatch, useSelector } from 'react-redux';
 
 const GreenHousePage = ({ navigation }) => {
@@ -47,13 +48,18 @@ const GreenHousePage = ({ navigation }) => {
                     </ImageBackground>
                     <View style={styles.monitoringAndControlling}>
                         {
-                            menuMoCon == 'monitoring'
-                                ? <BarMonitoring />
+                            menuMoCon == 'monitoring' ?
+                                <>
+                                    <BarMonitoring />
+                                    <MonitoringScreen />
+                                </>
                                 : null
                         }
                         {
-                            menuMoCon == 'controlling'
-                                ? <BarControlling />
+                            menuMoCon == 'controlling' ?
+                                <>
+                                    <BarControlling />
+                                </>
                                 : null
                         }
 
