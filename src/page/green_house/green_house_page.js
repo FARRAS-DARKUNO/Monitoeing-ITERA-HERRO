@@ -11,8 +11,11 @@ import styles from './green_house_style';
 import stylesGlobal from '../../utils/style_global';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import BarMonitoring from '../../component/bar_monitoring';
+import BarControlling from '../../component/bar_controlling';
 
 const GreenHousePage = ({ navigation }) => {
+
+    const [menu, setMenu] = useState('monitoring')
 
     let imageTest = 'https://awsimages.detik.net.id/community/media/visual/2021/10/23/taman-prestasi-1_169.jpeg?w=1200'
 
@@ -39,7 +42,18 @@ const GreenHousePage = ({ navigation }) => {
                         </View>
                     </ImageBackground>
                     <View style={styles.monitoringAndControlling}>
-                        <BarMonitoring />
+                        {
+                            menu == 'monitoring'
+                                ? <BarMonitoring />
+                                : null
+                        }
+                        {
+                            menu == 'controlling'
+                                ? <BarControlling />
+                                : null
+                        }
+
+
                     </View>
 
                 </ScrollView>
