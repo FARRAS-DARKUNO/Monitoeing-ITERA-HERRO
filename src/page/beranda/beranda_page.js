@@ -4,12 +4,15 @@ import {
     View,
     Text,
 } from 'react-native';
+import stylesGlobal from '../../utils/style_global';
 
 const BerandaPage = ({ navigation }) => {
     return (
         <View>
-            <Text style={styles.container}>
-                Hello wordA
+            <Text style = {
+                stylesGlobal.primer
+            }>
+                Hello word
             </Text>
         </View>
     );

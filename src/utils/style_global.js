@@ -2,7 +2,7 @@ import {
     StyleSheet,
 } from 'react-native';
 
-const styles = StyleSheet.create({
+const stylesGlobal = StyleSheet.create({
     //font style
     header1:{
         fontSize: 24,
@@ -37,14 +37,18 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins-SemiBold',
     },
     button:{
-        fontSize: 18,
+        fontSize: 19,
+        fontFamily: 'Poppins-reguler',
+    },
+    form_input:{
+        fontSize: 14,
         fontFamily: 'Poppins-Bold',
     },
     
     //Colorstyle
 
     primer:{
-        color:'#91C637',
+        color:'#09322D',
     },
     primaryVariant:{
         color:'#89BA35',
@@ -86,7 +90,7 @@ const styles = StyleSheet.create({
     //background color
     
     backgroundPrimer:{
-        backgroundColor:'#91C637',
+        backgroundColor:'#09322D',
     },
     backgroundPrimaryVariant:{
         backgroundColor:'#89BA35',
@@ -129,4 +133,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default styles
+export default stylesGlobal
