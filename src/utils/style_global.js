@@ -37,8 +37,8 @@ const stylesGlobal = StyleSheet.create({
         fontFamily: 'Poppins-SemiBold',
     },
     button:{
-        fontSize: 18,
-        fontFamily: 'Poppins-Bold',
+        fontSize: 19,
+        fontFamily: 'Poppins-reguler',
     },
     
     //Colorstyle
