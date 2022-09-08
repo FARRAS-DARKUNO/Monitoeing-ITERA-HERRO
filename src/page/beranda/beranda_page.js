@@ -8,7 +8,7 @@ import {
 const BerandaPage = ({ navigation }) => {
     return (
         <View>
-            <Text style={styles.container}>
+            <Text >
                 Hello wordA
             </Text>
         </View>
