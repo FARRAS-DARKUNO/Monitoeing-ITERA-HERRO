@@ -10,6 +10,7 @@ import stylesGlobal from '../../utils/style_global';
 import styles from './login_style';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import Octicons from 'react-native-vector-icons/Octicons';
 
 const LoginPage = ({ navigation }) => {
   return (
@@ -35,8 +36,10 @@ const LoginPage = ({ navigation }) => {
               formikProps;
             return (
               <View style={{marginTop: 20}}>
+                <View style={[{flexDirection:'row', width:'100%',borderBottomWidth: 1, borderBottomColor: '#E5E5E5', width:'100%'}]}>
+                <Octicons name='person' size={20} style={[stylesGlobal.primer,{marginRight:'5%',marginTop:'3%'}]} />
                 <TextInput
-                  style={[stylesGlobal.primer,{borderBottomWidth: 1, borderBottomColor: '#E5E5E5', paddingBottom: 5}]}
+                  style={[stylesGlobal.primer,stylesGlobal.form_input,{width:'100%'}]}
                   placeholder="Email"
                   value={values.email}
                   underlineColorAndroid="transparent"
@@ -47,13 +50,16 @@ const LoginPage = ({ navigation }) => {
                   onChangeText={handleChange('email')}
                   onBlur={handleBlur('email')}
                 />
+                  </View>
                 {errors.email ? (
                   <Text style={stylesGlobal.error}>{errors.email}</Text>
                 ) : (
                   <Text style={stylesGlobal.error}></Text>
                 )}
+                <View style={[{flexDirection:'row', width:'100%',borderBottomWidth: 1, borderBottomColor: '#E5E5E5', width:'100%',marginTop:'10%'}]}>
+                <Octicons name='lock' size={20} style={[stylesGlobal.primer,{marginRight:'5%',marginTop:'3%'}]} />
                 <TextInput
-                  style={[stylesGlobal.primer,{borderBottomWidth: 1, borderBottomColor: '#E5E5E5', paddingBottom: 5,marginTop: 20}]}
+                  style={[stylesGlobal.primer,stylesGlobal.form_input,{width:'100%'}]}
                   placeholder="Password"
                   value={values.password}
                   underlineColorAndroid="transparent"
@@ -63,6 +69,7 @@ const LoginPage = ({ navigation }) => {
                   onChangeText={handleChange('password')}
                   onBlur={handleBlur('password')}
                 />
+                </View>
                 {errors.password ? (
                   <Text style={stylesGlobal.error}>{errors.password}</Text>
                 ) : (
@@ -89,5 +96,4 @@ const LoginPage = ({ navigation }) => {
     </View>
   );
 };
-
 export default LoginPage;

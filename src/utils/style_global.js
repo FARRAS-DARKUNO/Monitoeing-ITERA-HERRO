@@ -40,6 +40,10 @@ const stylesGlobal = StyleSheet.create({
         fontSize: 19,
         fontFamily: 'Poppins-reguler',
     },
+    form_input:{
+        fontSize: 14,
+        fontFamily: 'Poppins-Bold',
+    },
     
     //Colorstyle
 
