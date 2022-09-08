@@ -5,7 +5,6 @@ import {
 
 const styles = StyleSheet.create({
     container: {
-        // top: '-10%',
         height: 250,
         width: "100%",
         marginBottom: 10,

@@ -2,23 +2,30 @@ import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
-    ScrollView,
-    StatusBar,
-    SafeAreaView,
-    ImageBackground,
+    TouchableOpacity,
     StyleSheet,
 } from 'react-native';
 import stylesGlobal from '../utils/style_global';
+import { useDispatch, useSelector } from 'react-redux';
+import { setMenuMonotoringControlling } from '../redux/action';
+
 
 const BarControlling = () => {
+    const dispatch = useDispatch();
+
+    const ChangeMenu = (data) => {
+        dispatch(setMenuMonotoringControlling(data))
+    }
     return (
         <View style={[stylesGlobal.backgroundPrimer, styles.navBar]}>
             <View style={styles.menuBar}>
-                <View style={styles.monitoring}>
+                <TouchableOpacity style={styles.monitoring} onPress={() => {
+                    ChangeMenu('monitoring')
+                }}>
                     <Text style={[stylesGlobal.body1, stylesGlobal.surface]}>
                         Monitor
                     </Text>
-                </View>
+                </TouchableOpacity>
                 <View style={styles.controlling}>
                     <Text style={[stylesGlobal.body1, stylesGlobal.primer]}>
                         Kontrol
