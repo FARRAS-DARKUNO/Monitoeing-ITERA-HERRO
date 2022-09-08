@@ -34,9 +34,9 @@ const LoginPage = ({ navigation }) => {
             const { handleChange, handleBlur, handleSubmit, values, errors } =
               formikProps;
             return (
-              <View>
+              <View style={{marginTop: 20}}>
                 <TextInput
-                  style={stylesGlobal.primer}
+                  style={[stylesGlobal.primer,{borderBottomWidth: 1, borderBottomColor: '#E5E5E5', paddingBottom: 5}]}
                   placeholder="Email"
                   value={values.email}
                   underlineColorAndroid="transparent"
@@ -53,7 +53,7 @@ const LoginPage = ({ navigation }) => {
                   <Text style={stylesGlobal.error}></Text>
                 )}
                 <TextInput
-                  style={stylesGlobal.primer}
+                  style={[stylesGlobal.primer,{borderBottomWidth: 1, borderBottomColor: '#E5E5E5', paddingBottom: 5,marginTop: 20}]}
                   placeholder="Password"
                   value={values.password}
                   underlineColorAndroid="transparent"
