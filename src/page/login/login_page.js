@@ -15,7 +15,9 @@ const LoginPage = ({ navigation }) => {
     return (
         <View style={styles.container}>
           <View style={styles.content}>
-            <Text style={[stylesGlobal.primer]}>Masuk</Text>
+          <View style={[{alignItems:'center'}]}>
+                <Text style={[stylesGlobal.primer,stylesGlobal.header1]}>Masuk</Text>
+            </View>
               <Formik
                 initialValues={{email: '', password: ''}}
                 onSubmit={(values, actions) => {
@@ -34,6 +36,7 @@ const LoginPage = ({ navigation }) => {
                   return (
                     <View>
                       <TextInput
+                        style 
                         placeholder="Email"
                         value={values.email}
                         underlineColorAndroid="transparent"
