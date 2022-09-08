@@ -10,7 +10,7 @@ import {
 import styles from './green_house_style';
 import stylesGlobal from '../../utils/style_global';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
-import BarControlling from '../../component/bar_controlling';
+import BarMonitoring from '../../component/bar_monitoring';
 
 const GreenHousePage = ({ navigation }) => {
 
@@ -39,7 +39,7 @@ const GreenHousePage = ({ navigation }) => {
                         </View>
                     </ImageBackground>
                     <View style={styles.monitoringAndControlling}>
-                        <BarControlling />
+                        <BarMonitoring />
                     </View>
 
                 </ScrollView>

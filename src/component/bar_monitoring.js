@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import stylesGlobal from '../utils/style_global';
 
-const BarControlling = () => {
+const BarMonitoring = () => {
     return (
         <View style={[stylesGlobal.backgroundPrimer, styles.navBar]}>
             <View style={styles.menuBar}>
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
     }
 
 });
-export default BarControlling
+export default BarMonitoring
