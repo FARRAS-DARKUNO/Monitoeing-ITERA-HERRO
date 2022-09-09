@@ -14,6 +14,7 @@ import BarMonitoring from '../../component/bar_monitoring';
 import BarControlling from '../../component/bar_controlling';
 import MonitoringScreen from '../../screen/monitoring/monitoring_screen';
 import { useDispatch, useSelector } from 'react-redux';
+import ContrillingScreen from '../../screen/controlling/controlling_screen';
 
 const GreenHousePage = ({ navigation }) => {
 
@@ -63,6 +64,7 @@ const GreenHousePage = ({ navigation }) => {
                             <>
                                 <BarControlling />
                                 <View style={stylesGlobal.enter20} />
+                                <ContrillingScreen />
                             </>
                             : null
                     }

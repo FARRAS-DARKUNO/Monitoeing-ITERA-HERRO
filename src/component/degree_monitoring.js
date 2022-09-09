@@ -7,7 +7,6 @@ import {
     Image
 } from 'react-native';
 import stylesGlobal from '../utils/style_global';
-import ProgressCircle from 'react-native-progress-circle';
 
 const DegreeMonitoring = (props) => {
 
@@ -74,7 +73,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: '#171717',
         shadowOpacity: 1,
-        borderRadius: 10,
         elevation: 1,
         shadowRadius: 10,
         padding: 20,
