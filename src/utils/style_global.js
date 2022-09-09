@@ -102,7 +102,7 @@ const stylesGlobal = StyleSheet.create({
         backgroundColor: '#36A155',
     },
     backgroundBackground: {
-        backgroundColor: '#F6F6F6',
+        backgroundColor: '#F5F5F5',
     },
     backgroundSurface: {
         backgroundColor: '#FFFFFF',
