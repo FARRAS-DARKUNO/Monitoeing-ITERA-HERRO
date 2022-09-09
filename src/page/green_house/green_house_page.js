@@ -27,46 +27,50 @@ const GreenHousePage = ({ navigation }) => {
     return (
         <>
             <SafeAreaView style={stylesGlobal.surface} >
-                <ScrollView>
-                    <StatusBar
-                        animated={true}
-                        hidden={true} />
-                    <ImageBackground
-                        resizeMode="cover"
-                        source={{ uri: imageTest }}
-                        style={styles.container}
-                    >
-                        <View style={styles.imageBackgroundPlus}>
-                            <View style={styles.backView}>
-                                <Icon name="arrow-back" size={24} color="#ffff" />
-                                <View style={stylesGlobal.space10} />
-                                <Text style={[stylesGlobal.header2, { color: '#ffff' }]}>
-                                    Green House 1
-                                </Text>
-                            </View>
+
+                <StatusBar
+                    animated={true}
+                    hidden={true} />
+                <ImageBackground
+                    resizeMode="cover"
+                    source={{ uri: imageTest }}
+                    style={styles.container}
+                >
+                    <View style={styles.imageBackgroundPlus}>
+                        <View style={styles.backView}>
+                            <Icon name="arrow-back" size={24} color="#ffff" />
+                            <View style={stylesGlobal.space10} />
+                            <Text style={[stylesGlobal.header2, { color: '#ffff' }]}>
+                                Green House 1
+                            </Text>
                         </View>
-                    </ImageBackground>
-                    <View style={styles.monitoringAndControlling}>
-                        {
-                            menuMoCon == 'monitoring' ?
-                                <>
-                                    <BarMonitoring />
-                                    <MonitoringScreen />
-                                </>
-                                : null
-                        }
-                        {
-                            menuMoCon == 'controlling' ?
-                                <>
-                                    <BarControlling />
-                                </>
-                                : null
-                        }
-
-
                     </View>
+                </ImageBackground>
 
-                </ScrollView>
+                <View style={styles.monitoringAndControlling}>
+
+                    {
+                        menuMoCon == 'monitoring' ?
+                            <>
+                                <BarMonitoring />
+                                <View style={stylesGlobal.enter20} />
+                                <MonitoringScreen />
+                            </>
+                            : null
+                    }
+                    {
+                        menuMoCon == 'controlling' ?
+                            <>
+                                <BarControlling />
+                                <View style={stylesGlobal.enter20} />
+                            </>
+                            : null
+                    }
+
+
+                </View>
+
+
             </SafeAreaView>
         </>
     );

@@ -4,7 +4,8 @@ import {
     View,
     Text,
     TouchableOpacity,
-    Image
+    Image,
+    ScrollView
 } from 'react-native';
 import styles from './monitoring_style';
 import stylesGlobal from '../../utils/style_global';
@@ -45,44 +46,92 @@ const MonitoringScreen = ({ navigation }) => {
             unit: 'Lux',
             value: 22139.8,
         },
+        {
+            icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTFdJtYeN28Zsl_3Vc9PejqIWbhdKASLgC95ZuILxqHVhzP-F7XvmfHc34zIHRkifWDJU&usqp=CAU',
+            color: '#3399FF',
+            name: 'Kelembapan',
+            status: 1,
+            tanggal: '2021-06-06 17:38:51',
+            jenis: 'persen',
+            unit: 'persen',
+            value: 50,
+        },
+        {
+            icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTFdJtYeN28Zsl_3Vc9PejqIWbhdKASLgC95ZuILxqHVhzP-F7XvmfHc34zIHRkifWDJU&usqp=CAU',
+            color: '#0B8559',
+            name: 'Suhu Lingkungan',
+            status: 0,
+            tanggal: '2021-06-06 17:31:51',
+            jenis: 'derajat',
+            unit: 'Celcius',
+            value: 29.8,
+        },
+        {
+            icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTFdJtYeN28Zsl_3Vc9PejqIWbhdKASLgC95ZuILxqHVhzP-F7XvmfHc34zIHRkifWDJU&usqp=CAU',
+            color: '#B7A925',
+            name: 'Insensitas Cahaya',
+            status: 1,
+            tanggal: '2021-06-03 17:31:51',
+            jenis: 'else',
+            unit: 'Lux',
+            value: 22139.8,
+        },
     ]
 
     return (
-        <View style={styles.container}>
-            <PersenMonitoring data={{
-                icon: DummieData[0].icon,
-                color: DummieData[0].color,
-                name: DummieData[0].name,
-                status: DummieData[0].status,
-                tanggal: DummieData[0].tanggal,
-                jenis: DummieData[0].jenis,
-                value: DummieData[0].value,
-                unit: DummieData[0].unit,
-            }} />
-
-            <DegreeMonitoring data={{
-                icon: DummieData[1].icon,
-                color: DummieData[1].color,
-                name: DummieData[1].name,
-                status: DummieData[1].status,
-                tanggal: DummieData[1].tanggal,
-                jenis: DummieData[1].jenis,
-                value: DummieData[1].value,
-                unit: DummieData[1].unit,
-            }} />
-            <ElseMonitoring data={{
-                icon: DummieData[2].icon,
-                color: DummieData[2].color,
-                name: DummieData[2].name,
-                status: DummieData[2].status,
-                tanggal: DummieData[2].tanggal,
-                jenis: DummieData[2].jenis,
-                value: DummieData[2].value,
-                unit: DummieData[2].unit,
-            }} />
-
-
+        <View style={{ height: '68%', width: '100%' }}>
+            <ScrollView>
+                <View style={styles.container}>
+                    {
+                        DummieData.map((placement) => {
+                            if (placement.jenis == 'persen') {
+                                return (
+                                    <PersenMonitoring data={{
+                                        icon: placement.icon,
+                                        color: placement.color,
+                                        name: placement.name,
+                                        status: placement.status,
+                                        tanggal: placement.tanggal,
+                                        jenis: placement.jenis,
+                                        value: placement.value,
+                                        unit: placement.unit,
+                                    }} />
+                                )
+                            }
+                            else if (placement.jenis == 'derajat') {
+                                return (
+                                    <DegreeMonitoring data={{
+                                        icon: placement.icon,
+                                        color: placement.color,
+                                        name: placement.name,
+                                        status: placement.status,
+                                        tanggal: placement.tanggal,
+                                        jenis: placement.jenis,
+                                        value: placement.value,
+                                        unit: placement.unit,
+                                    }} />
+                                )
+                            }
+                            else if (placement.jenis == 'else') {
+                                return (
+                                    <ElseMonitoring data={{
+                                        icon: placement.icon,
+                                        color: placement.color,
+                                        name: placement.name,
+                                        status: placement.status,
+                                        tanggal: placement.tanggal,
+                                        jenis: placement.jenis,
+                                        value: placement.value,
+                                        unit: placement.unit,
+                                    }} />
+                                )
+                            }
+                        })
+                    }
+                </View>
+            </ScrollView>
         </View>
+
     );
 };
 

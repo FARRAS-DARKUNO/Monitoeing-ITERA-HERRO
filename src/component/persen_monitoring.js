@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     persenData: {
-        width: '45%',
+        width: '49%',
         height: 180,
         backgroundColor: 'white',
         borderRadius: 10,
@@ -81,6 +81,7 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
         padding: 20,
         alignItems: 'center',
+        marginBottom: 10,
     },
     titleAndIcon: {
         flexDirection: 'row',
