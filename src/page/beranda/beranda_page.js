@@ -16,6 +16,7 @@ const BerandaPage = ({ navigation }) => {
             id: 1,
             nama: 'Mayonice',
             date: 'Minggu,  05 Agustus 2022',
+            notification: '1',
             data: [{
                          id: 1,
                         nama: 'Greenhouse 1',
@@ -47,9 +48,14 @@ const BerandaPage = ({ navigation }) => {
                     {akun[0].nama}
                 </Text>
                 </View>
-                <View>
-                <Ionicons name='md-notifications' size={20} style={[stylesGlobal.surface,{marginLeft:'5%',marginTop:'3%'}]} />
-                </View>
+                <TouchableOpacity>
+                    <View style={[stylesGlobal.backgroundOnError,{justifyContent:'center',alignItems:'center',alignContent:'center',width:19,height:19,borderRadius:14}]}>
+                        <Text>
+                            {akun[0].notification}
+                        </Text>
+                    </View>
+                    <Ionicons name='md-notifications' size={24} style={[stylesGlobal.surface,{marginRight:10,left:-10,top:-12,zIndex:-1}]} />
+                </TouchableOpacity>
             </View>
             <View style={[stylesGlobal.backgroundBackground,stylesGlobal.backgroundPrimer,styles.date]}>
                <View style={{marginLeft:'5%'}}>
@@ -74,7 +80,7 @@ const BerandaPage = ({ navigation }) => {
                         <ScrollView >
                                 {akun[0].data.map((item) => (
                                     <><TouchableOpacity style={[stylesGlobal.backgroundOnPrimary, {
-                                        borderRadius: 13, width: 387, height: 250, justifyContent: 'space-around', alignItems: 'center', flexDirection: 'column', borderColor: '#171717',
+                                        borderRadius: 5, width: 387, height: 250, justifyContent: 'space-around', alignItems: 'center', flexDirection: 'column', borderColor: '#171717',
                                         shadowOpacity: 0.8,
                                         elevation: 1,
                                     }]} key={item.id}>

@@ -126,7 +126,7 @@ const stylesGlobal = StyleSheet.create({
         backgroundColor: '#000000',
     },
     backgroundOnError: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#B00020',
     },
 
     //enter and space
