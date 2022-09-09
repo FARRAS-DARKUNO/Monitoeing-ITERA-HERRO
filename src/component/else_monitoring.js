@@ -9,7 +9,7 @@ import {
 import stylesGlobal from '../utils/style_global';
 import ProgressCircle from 'react-native-progress-circle';
 
-const PersenMonitoring = (props) => {
+const ElseMonitoring = (props) => {
 
     let data = props.data
 
@@ -24,16 +24,14 @@ const PersenMonitoring = (props) => {
                     </Text>
                 </View>
 
-                <ProgressCircle
-                    percent={data.value}
-                    radius={30}
-                    borderWidth={8}
-                    color={data.color}
-                    shadowColor="#F2F2F2"
-                    bgColor="#fff"
-                >
-                    <Text style={{ fontSize: 14 }}>{data.value}{'%'}</Text>
-                </ProgressCircle>
+                <View style={{ alignItems: 'center' }}>
+                    <Text style={[stylesGlobal.header2, { color: data.color }]}>
+                        {data.value}
+                    </Text>
+                    <Text style={[stylesGlobal.header2, { color: data.color }]}>
+                        {data.unit}
+                    </Text>
+                </View>
 
                 <View style={{ alignItems: 'center' }}>
                     <View style={{ flexDirection: 'row' }}>
@@ -97,4 +95,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default PersenMonitoring;
+export default ElseMonitoring;

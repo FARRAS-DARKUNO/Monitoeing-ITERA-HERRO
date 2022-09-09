@@ -3,7 +3,7 @@ import {
 } from "./action";
 
 const initialState = {
-    menuMoCon: 'controlling',
+    menuMoCon: 'monitoring',
 }
 
 function userReducer(state = initialState, action) {

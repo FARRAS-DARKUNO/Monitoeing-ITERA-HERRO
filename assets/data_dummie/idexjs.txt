@@ -50,3 +50,18 @@ get ViewPropTypes(): $FlowFixMe {
   console.warn('');
   return require('deprecated-react-native-prop-types').ViewPropTypes;
 },
+
+
+
+///// CATATAN
+
+data={{
+                icon: DummieData[0].icon,
+                color: DummieData[0].color,
+                name: DummieData[0].name,
+                status: DummieData[0].status,
+                tanggal: DummieData[0].tanggal,
+                jenis: DummieData[0].jenis,
+                value: DummieData[0].value,
+                unit: DummieData[0].unit,
+            }} 
