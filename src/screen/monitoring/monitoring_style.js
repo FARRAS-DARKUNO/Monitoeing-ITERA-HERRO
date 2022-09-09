@@ -9,6 +9,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         marginVertical: 20,
     },
+    insideCard: {
+        width: '100%',
+        alignItems: 'center',
+        height: '100%',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+    },
     persenData: {
         width: '45%',
         height: 180,
@@ -19,7 +26,21 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         elevation: 1,
         shadowRadius: 10,
-    }
+        padding: 20,
+        alignItems: 'center',
+    },
+    titleAndIcon: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    imageIcon: {
+        height: 24,
+        width: 24,
+        backgroundColor: 'red',
+        resizeMode: 'stretch',
+    },
+
 });
 
 export default styles
