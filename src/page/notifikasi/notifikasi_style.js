@@ -1,15 +1,16 @@
 import { StyleSheet } from 'react-native';
+
 const styles = StyleSheet.create({
     container: {
         // alignItems:"center",
         height: '100%',
         width: '100%',
+        flex:1,
     },
-    profile:{
+    topBar:{
         width: '100%',
-        height: '10%',
+        height: 60,
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
     },
     date:{
