@@ -42,10 +42,29 @@ const [notif, setNotif] = useState([
         id: 1,
         notifikasi:1
     },
-    { 
-        id: 2,
-        notifikasi:2
+    {
+        id: 1,
+        notifikasi:1
     },
+    {
+        id: 1,
+        notifikasi:1
+    },
+    {
+        id: 1,
+        notifikasi:1
+    },    {
+        id: 1,
+        notifikasi:1
+    },
+    {
+        id: 1,
+        notifikasi:1
+    },    {
+        id: 1,
+        notifikasi:1
+    },
+
 ]
 );
 const [notifications, setNotifications] = useState(null);
@@ -65,15 +84,25 @@ const [notifications, setNotifications] = useState(null);
                     setNotifications(item);
                  }}>
                     {
-                       notif.length > 0 ? (
-                                <View style={[stylesGlobal.backgroundOnError, { justifyContent: 'center', alignItems: 'center', alignContent: 'center', width: 19, height: 19, borderRadius: 14 }]}>
-                                    <Text style={stylesGlobal.body1}>{notif.length}</Text>
-                                </View>
-                        ) : (
-                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', width: 19, height: 19, borderRadius: 14 }}>
+                        notif.length > 0  && notif.length < 9 ? (
+                            <View style={[stylesGlobal.backgroundOnError, { justifyContent: 'center', alignItems: 'center', alignContent: 'center', width: 19,top:19, height: 19, borderRadius: 14 }]}>
+                                <Text style={stylesGlobal.body1}>{notif.length}</Text>
                             </View>
-                            )
-                        }
+                    ) : (
+                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center',width: 19, height: 19}}>
+                        </View>
+                        )
+                    }
+                    {
+                        notif.length >= 9 ? (
+                            <View style={[stylesGlobal.backgroundOnError, { justifyContent: 'center', alignItems: 'center', alignContent: 'center', width: 19, height: 19, borderRadius: 14 }]}>
+                                <Text style={stylesGlobal.body1}>9+</Text>
+                            </View>
+                    ) : (
+                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center',width: 19, height: 19}}>
+                        </View>
+                        )
+                    }
                         <Ionicons name="notifications" size={24} color="#fff" style={[stylesGlobal.surface,{marginRight:10,left:-10,top:-12,zIndex:-1}]}/>
                 </TouchableOpacity>
             </View>
