@@ -11,10 +11,21 @@ import {
 import styles from './detail_monitoring_style';
 import stylesGlobal from '../../utils/style_global';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
+import CardDetail from '../../component/card_detail';
 
 const DetailMonitoringPage = ({ navigation }) => {
 
-    let image = 'https://png.pngtree.com/template/20190316/ourmid/pngtree-water-logo-image_79174.jpg'
+    let dataDummie = {
+        icon: 'https://png.pngtree.com/template/20190316/ourmid/pngtree-water-logo-image_79174.jpg',
+        color: '#10B8DD',
+        status: 1,
+        value: 75,
+        jenis: 'persen',
+        unit: 'persen',
+        name: 'Kelembaban Dah'
+    }
+
+
     return (
         <SafeAreaView style={stylesGlobal.surface}>
             <StatusBar
@@ -39,29 +50,15 @@ const DetailMonitoringPage = ({ navigation }) => {
                     2021-06-06 17:38:52
                 </Text>
             </View>
-            <View style={{ width: '100%', paddingHorizontal: 20 }}>
-                <View style={[styles.realTime, { backgroundColor: '#10B8DD' }]}>
-                    <View style={styles.dataRealtime}>
-                        <View style={styles.cisrcle}>
-                            <Image
-                                style={{ height: 24, width: 24 }}
-                                source={{ uri: image }}
-                            />
-                        </View>
-                        <View style={stylesGlobal.space10} />
-                        <View style={styles.textRealtime}>
-                            <Text style={[stylesGlobal.header3, { color: '#ffff' }]}>
-                                suhu riangan udara
-                            </Text>
-                            <Text style={[stylesGlobal.header2, { color: '#FFFF' }]}>{'75'}{'%'}</Text>
-                        </View>
-                    </View>
-                    <View style={styles.checkOn}>
-                        <View style={[{ height: 10, width: 10, borderRadius: 100 }, stylesGlobal.backgroundSecondary]} />
-                        <Text style={[stylesGlobal.caption, stylesGlobal.primer]}> Online</Text>
-                    </View>
-                </View>
-            </View>
+            <CardDetail data={{
+                icon: dataDummie.icon,
+                color: dataDummie.color,
+                status: dataDummie.status,
+                value: dataDummie.value,
+                jenis: dataDummie.jenis,
+                unit: dataDummie.unit,
+                name: dataDummie.name
+            }} />
 
         </SafeAreaView>
     );
