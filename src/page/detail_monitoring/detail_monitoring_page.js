@@ -6,7 +6,6 @@ import {
     StatusBar,
     SafeAreaView,
     TouchableOpacity,
-    Image,
 } from 'react-native';
 import styles from './detail_monitoring_style';
 import stylesGlobal from '../../utils/style_global';
@@ -14,6 +13,7 @@ import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import CardDetail from '../../component/card_detail';
 import MenuDetailGraphic from '../../component/menu_detail_grafik';
 import MenuDetailRiwayat from '../../component/menu_detail_riwayat';
+import GraphicScreen from '../../screen/graphic/graphic_screen';
 import { useSelector } from 'react-redux';
 
 
@@ -82,11 +82,10 @@ const DetailMonitoringPage = ({ navigation }) => {
                         <>
                             <MenuDetailGraphic />
                             <View style={stylesGlobal.enter20} />
+                            <GraphicScreen />
                         </>
                         : null
                 }
-
-
             </View>
 
         </SafeAreaView>
