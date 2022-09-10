@@ -12,8 +12,16 @@ import styles from './detail_monitoring_style';
 import stylesGlobal from '../../utils/style_global';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import CardDetail from '../../component/card_detail';
+import MenuDetailGraphic from '../../component/menu_detail_grafik';
+import MenuDetailRiwayat from '../../component/menu_detail_riwayat';
+import { useSelector } from 'react-redux';
+
 
 const DetailMonitoringPage = ({ navigation }) => {
+
+    const { menuGraRi } = useSelector(
+        state => state.userReducer,
+    );
 
     let dataDummie = {
         icon: 'https://png.pngtree.com/template/20190316/ourmid/pngtree-water-logo-image_79174.jpg',
@@ -59,6 +67,27 @@ const DetailMonitoringPage = ({ navigation }) => {
                 unit: dataDummie.unit,
                 name: dataDummie.name
             }} />
+            <View style={stylesGlobal.enter20} />
+            <View style={{ paddingHorizontal: 20 }}>
+                {
+                    menuGraRi == 'history' ?
+                        <>
+                            <MenuDetailRiwayat />
+                            <View style={stylesGlobal.enter20} />
+                        </>
+                        : null
+                }
+                {
+                    menuGraRi == 'graphic' ?
+                        <>
+                            <MenuDetailGraphic />
+                            <View style={stylesGlobal.enter20} />
+                        </>
+                        : null
+                }
+
+
+            </View>
 
         </SafeAreaView>
     );

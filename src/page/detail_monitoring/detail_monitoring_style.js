@@ -24,6 +24,25 @@ const styles = StyleSheet.create({
         // backgroundColor: 'red',
         marginBottom: 10,
     },
+    grafikRiwayat: {
+        width: '100%',
+        height: 40,
+        flexDirection: 'row'
+    },
+    grafik: {
+        height: '100%',
+        width: '50%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderBottomColor: '#14453E',
+        borderBottomWidth: 2,
+    },
+    riwayat: {
+        height: '100%',
+        width: '50%',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 
 });
 
