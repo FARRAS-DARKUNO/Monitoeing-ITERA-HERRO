@@ -16,7 +16,6 @@ const BerandaPage = ({ navigation }) => {
             id: 1,
             nama: 'Mayonice',
             date: 'Minggu,  05 Agustus 2022',
-            notification: '1',
             data: [{
                          id: 1,
                         nama: 'Greenhouse 1',
@@ -37,6 +36,20 @@ const BerandaPage = ({ navigation }) => {
                 
         ]
 }]);
+
+const [notif, setNotif] = useState([
+    {
+        id: 1,
+        notifikasi:1
+    },
+    { 
+        id: 2,
+        notifikasi:2
+    },
+]
+);
+const [notifications, setNotifications] = useState(null);
+ 
     return (
         <View style={[stylesGlobal.backgroundBackground,styles.container]}>
             <View style={[stylesGlobal.backgroundBackground,stylesGlobal.backgroundPrimer,styles.profile]} >
@@ -48,13 +61,20 @@ const BerandaPage = ({ navigation }) => {
                     {akun[0].nama}
                 </Text>
                 </View>
-                <TouchableOpacity>
-                    <View style={[stylesGlobal.backgroundOnError,{justifyContent:'center',alignItems:'center',alignContent:'center',width:19,height:19,borderRadius:14}]}>
-                        <Text>
-                            {akun[0].notification}
-                        </Text>
-                    </View>
-                    <Ionicons name='md-notifications' size={24} style={[stylesGlobal.surface,{marginRight:10,left:-10,top:-12,zIndex:-1}]} />
+                <TouchableOpacity onPress={() => {
+                    setNotifications(item);
+                 }}>
+                    {
+                       notif.length > 0 ? (
+                                <View style={[stylesGlobal.backgroundOnError, { justifyContent: 'center', alignItems: 'center', alignContent: 'center', width: 19, height: 19, borderRadius: 14 }]}>
+                                    <Text style={stylesGlobal.body1}>{notif.length}</Text>
+                                </View>
+                        ) : (
+                            <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center', width: 19, height: 19, borderRadius: 14 }}>
+                            </View>
+                            )
+                        }
+                        <Ionicons name="notifications" size={24} color="#fff" style={[stylesGlobal.surface,{marginRight:10,left:-10,top:-12,zIndex:-1}]}/>
                 </TouchableOpacity>
             </View>
             <View style={[stylesGlobal.backgroundBackground,stylesGlobal.backgroundPrimer,styles.date]}>
@@ -74,26 +94,27 @@ const BerandaPage = ({ navigation }) => {
             </View>
             <View style={[stylesGlobal.backgroundPrimer,styles.shape]}>
             </View>
-
                 <View style={[styles.scroll]}>
                     <View style={[stylesGlobal.surface,{alignContent:'center',alignItems:'center',bottom:40}]}> 
                         <ScrollView >
-                                {akun[0].data.map((item) => (
-                                    <><TouchableOpacity style={[stylesGlobal.backgroundOnPrimary, {
-                                        borderRadius: 5, width: 387, height: 250, justifyContent: 'space-around', alignItems: 'center', flexDirection: 'column', borderColor: '#171717',
-                                        shadowOpacity: 0.8,
-                                        elevation: 1,
-                                    }]} key={item.id}>
-                                        <Image source={item.gambar} style={{ marginVertical: 10, width: 362, height: 190, borderRadius: 5 }} />
-                                        <Text style={[stylesGlobal.primer, stylesGlobal.header3, { bottom: 10 }]}>
-                                            {item.nama}
-                                        </Text>
-                                    </TouchableOpacity>
-                                    <View style={[stylesGlobal.backgroundBackground,{width:'100%',height:'3%',top:0,position:'relative'}]}>
-                                        <Text>
-                                        </Text>
-                                    </View></>
-                            ))}
+                            <View>
+                                {akun[0].data.map((item,index) => {
+                                    return (
+                                        <><TouchableOpacity key={index.id} style={[stylesGlobal.backgroundOnPrimary, {
+                                            borderRadius: 5, width: 387, height: 250, justifyContent: 'space-around', alignItems: 'center', flexDirection: 'column', borderColor: '#171717',
+                                            shadowOpacity: 0.8,
+                                            elevation: 1,
+                                        }]}>
+                                            <Image source={item.gambar} style={{ marginVertical: 10, width: 362, height: 190, borderRadius: 5 }} />
+                                            <Text style={[stylesGlobal.primer, stylesGlobal.header3, { bottom: 10 }]}>
+                                                {item.nama}
+                                            </Text>
+                                        </TouchableOpacity><View style={[stylesGlobal.backgroundBackground, { width: '100%', height: '3%', top: 0, position: 'relative' }]}>
+                                                <Text>
+                                                </Text>
+                                            </View></>
+                            )})}
+                            </View>
                         </ScrollView>
                     </View>
                 </View>
