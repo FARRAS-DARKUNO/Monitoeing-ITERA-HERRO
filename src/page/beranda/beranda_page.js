@@ -80,9 +80,7 @@ const [notifications, setNotifications] = useState(null);
                     {akun[0].nama}
                 </Text>
                 </View>
-                <TouchableOpacity onPress={() => {
-                    setNotifications(item);
-                 }}>
+                <TouchableOpacity>
                     {
                         notif.length > 0  && notif.length < 9 ? (
                             <View style={[stylesGlobal.backgroundOnError, { justifyContent: 'center', alignItems: 'center', alignContent: 'center', width: 19,top:19, height: 19, borderRadius: 14 }]}>
