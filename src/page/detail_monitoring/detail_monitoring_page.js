@@ -14,6 +14,7 @@ import CardDetail from '../../component/card_detail';
 import MenuDetailGraphic from '../../component/menu_detail_grafik';
 import MenuDetailRiwayat from '../../component/menu_detail_riwayat';
 import GraphicScreen from '../../screen/graphic/graphic_screen';
+import HistoryScreen from '../../screen/history/history_screen';
 import { useSelector } from 'react-redux';
 
 
@@ -74,6 +75,7 @@ const DetailMonitoringPage = ({ navigation }) => {
                         <>
                             <MenuDetailRiwayat />
                             <View style={stylesGlobal.enter20} />
+                            <HistoryScreen />
                         </>
                         : null
                 }

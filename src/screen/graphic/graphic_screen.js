@@ -15,9 +15,7 @@ import {
 
 const GraphicScreen = ({ navigation }) => {
     const screenWidth = Dimensions.get("window").width - 20;
-
-    const countries = [2021, 2022, 2023, 2024]
-    const bulan = ['Januari', 'Februari', 'Maret', "April", "Mei", 'Juni', "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
+    const bulan = ['Harian', 'Bulanan', 'Tahunan']
 
     const data = {
         labels: ["1", "2", "3", "4"],
@@ -38,21 +36,6 @@ const GraphicScreen = ({ navigation }) => {
                     Statistik
                 </Text>
                 <View style={styles.viewBottom}>
-                    <SelectDropdown
-                        data={countries}
-                        buttonStyle={styles.buttonSelectYear}
-                        buttonTextStyle={styles.textButton}
-                        defaultValue={countries[0]}
-                        onSelect={(selectedItem, index) => {
-                            console.log(selectedItem, index)
-                        }}
-                        buttonTextAfterSelection={(selectedItem, index) => {
-                            return selectedItem
-                        }}
-                        rowTextForSelection={(item, index) => {
-                            return item
-                        }}
-                    />
 
                     <SelectDropdown
                         data={bulan}
