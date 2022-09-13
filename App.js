@@ -8,6 +8,9 @@ import DetailMonitoringPage from './src/page/detail_monitoring/detail_monitoring
 //redux
 import { Provider } from 'react-redux';
 import { Store } from './src/redux/store';
+import notifikasi_page from './src/page/notifikasi/notifikasi_page';
+import NotifikasiPage from './src/page/notifikasi/notifikasi_page';
+import NoHaveInternetPage from './src/page/no_have_internet/no_have_internet_page';
 
 const Stack = createNativeStackNavigator();
 

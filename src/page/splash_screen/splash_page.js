@@ -13,7 +13,7 @@ export default class SplashScreen extends Component {
           <Image
               style = {SplashScreenStyle.logo}
               source={
-                require('../../../assets/Logo.png')
+                require('../../../assets/images/Logo.png')
               }/>
         </View>
       </SafeAreaView>
