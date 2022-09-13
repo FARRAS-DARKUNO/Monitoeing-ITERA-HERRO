@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { Store } from './src/redux/store';
 import notifikasi_page from './src/page/notifikasi/notifikasi_page';
 import NotifikasiPage from './src/page/notifikasi/notifikasi_page';
+import NoHaveInternetPage from './src/page/no_have_internet/no_have_internet_page';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +20,7 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="BerandaPage" component={NotifikasiPage} /> 
+          <Stack.Screen name="BerandaPage" component={NoHaveInternetPage} /> 
           {/* <Stack.Screen name="GreenHousePage" component={GreenHousePage} /> */}
         </Stack.Navigator>
       </NavigationContainer>

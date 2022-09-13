@@ -3,15 +3,21 @@ import {
     StyleSheet,
     View,
     Text,
+    Image,
+    SafeAreaView
 } from 'react-native';
-
+import styles from './no_have_internet_style';
 const NoHaveInternetPage = ({ navigation }) => {
     return (
-        <View>
-            <Text style={styles.container}>
-                Hello wordA
-            </Text>
+        <SafeAreaView style={styles.container}>
+        <View style={styles.content}>
+          <Image
+              style = {styles.gambar}
+              source={
+                require('../../../assets/images/gaadasinyal.png')
+              }/>
         </View>
+      </SafeAreaView>
     );
 };
 
