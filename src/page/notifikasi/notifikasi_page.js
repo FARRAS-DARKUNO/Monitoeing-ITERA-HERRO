@@ -21,9 +21,9 @@ const NotifikasiPage = () => {
   return (
     <View style={[styles.container,stylesGlobal.backgroundOnSecondary]}>
     <View style={[stylesGlobal.backgroundPrimer,styles.topBar]}>
-      <View style={{marginLeft:20,marginLeft:20, flexDirection:'row'}}>
+      <View style={[styles.topBarContent]}>
         <TouchableOpacity>
-          <MaterialIcons name="arrow-back" size={24} style={[stylesGlobal.onPrimary,{marginRight:20}]} />
+          <MaterialIcons name="arrow-back" size={24} style={[stylesGlobal.onPrimary,styles.arrowBackIcon]} />
         </TouchableOpacity>
         <Text style={[stylesGlobal.onPrimary,stylesGlobal.header2]}>Notifikasi</Text>
       </View>
@@ -31,18 +31,15 @@ const NotifikasiPage = () => {
     {
       notif.map((item,index) => {
         return (
-          <View style={[stylesGlobal.backgroundOnSecondary,{marginHorizontal:20,marginTop:20,justifyContent:'center',alignContent:'center'}]} key={index}>
-            <View style={[{flexDirection:'row',justifyContent:'space-around',alignContent:'center',alignItems:'center'}]}>
-              <View style={[stylesGlobal.backgroundPrimer,{width:60,height:60,justifyContent:'center',alignItems:'center',borderRadius:50}]} >
+          <View style={[stylesGlobal.backgroundOnSecondary,styles.notificationField]} key={index}>
+            <View style={[styles.notificationCard]}>
+              <View style={[stylesGlobal.backgroundPrimer,styles.iconCard]} >
                 <Feather name="alert-triangle" size={30} style={[stylesGlobal.onError]}/>
               </View>
               <View>
                 <Text style={[stylesGlobal.onBackground,stylesGlobal.header3]}>{item.notifikasi}</Text>
                 <Text style={[stylesGlobal.gray,stylesGlobal.header3]}>{item.waktu}</Text>
               </View>
-              <TouchableOpacity style={[{justifyContent:"center"}]}>
-                <Ionicons name="close" size={24}  style={[stylesGlobal.primer]}/>
-              </TouchableOpacity>
             </View>
           </View>
         )

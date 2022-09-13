@@ -1,6 +1,5 @@
 import React,{useState} from 'react';
 import {
-    StyleSheet,
     View,
     Text,
     Image,
@@ -9,7 +8,7 @@ import {
 } from 'react-native';
 import stylesGlobal from '../../utils/style_global';
 import styles from '../beranda/beranda_style';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import NotificationButton from '../../component/notification_button';
 const BerandaPage = ({ navigation }) => {
     const [akun, setAkun] = useState([
         {
@@ -36,39 +35,6 @@ const BerandaPage = ({ navigation }) => {
                 
         ]
 }]);
-
-const [notif, setNotif] = useState([
-    {
-        id: 1,
-        notifikasi:1
-    },
-    {
-        id: 1,
-        notifikasi:1
-    },
-    {
-        id: 1,
-        notifikasi:1
-    },
-    {
-        id: 1,
-        notifikasi:1
-    },    {
-        id: 1,
-        notifikasi:1
-    },
-    {
-        id: 1,
-        notifikasi:1
-    },    {
-        id: 1,
-        notifikasi:1
-    },
-
-]
-);
-const [notifications, setNotifications] = useState(null);
- 
     return (
         <View style={[stylesGlobal.backgroundBackground,styles.container]}>
             <View style={[stylesGlobal.backgroundBackground,stylesGlobal.backgroundPrimer,styles.profile]} >
@@ -80,29 +46,7 @@ const [notifications, setNotifications] = useState(null);
                     {akun[0].nama}
                 </Text>
                 </View>
-                <TouchableOpacity>
-                    {
-                        notif.length > 0  && notif.length < 9 ? (
-                            <View style={[stylesGlobal.backgroundOnError, { justifyContent: 'center', alignItems: 'center', alignContent: 'center', width: 19,top:19, height: 19, borderRadius: 14 }]}>
-                                <Text style={stylesGlobal.body1}>{notif.length}</Text>
-                            </View>
-                    ) : (
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center',width: 19, height: 19}}>
-                        </View>
-                        )
-                    }
-                    {
-                        notif.length >= 9 ? (
-                            <View style={[stylesGlobal.backgroundOnError, { justifyContent: 'center', alignItems: 'center', alignContent: 'center', width: 19, height: 19, borderRadius: 14 }]}>
-                                <Text style={stylesGlobal.body1}>9+</Text>
-                            </View>
-                    ) : (
-                        <View style={{ justifyContent: 'center', alignItems: 'center', alignContent: 'center',width: 19, height: 19}}>
-                        </View>
-                        )
-                    }
-                        <Ionicons name="notifications" size={24} color="#fff" style={[stylesGlobal.surface,{marginRight:10,left:-10,top:-12,zIndex:-1}]}/>
-                </TouchableOpacity>
+                <NotificationButton/>
             </View>
             <View style={[stylesGlobal.backgroundBackground,stylesGlobal.backgroundPrimer,styles.date]}>
                <View style={{marginLeft:'5%'}}>
