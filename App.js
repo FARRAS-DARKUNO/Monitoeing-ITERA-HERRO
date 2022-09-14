@@ -8,9 +8,9 @@ import DetailMonitoringPage from './src/page/detail_monitoring/detail_monitoring
 //redux
 import { Provider } from 'react-redux';
 import { Store } from './src/redux/store';
-import notifikasi_page from './src/page/notifikasi/notifikasi_page';
-import NotifikasiPage from './src/page/notifikasi/notifikasi_page';
-import NoHaveInternetPage from './src/page/no_have_internet/no_have_internet_page';
+import BerandaPage from './src/page/beranda/beranda_page';
+// import NotifikasiPage from './src/page/notifikasi/notifikasi_page';
+// import NoHaveInternetPage from './src/page/no_have_internet/no_have_internet_page';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,9 +21,8 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{ headerShown: false }}>
-          {/* <Stack.Screen name="BerandaPage" component={BerandaPage} /> */}
+          <Stack.Screen name="BerandaPage" component={BerandaPage} /> 
           {/* <Stack.Screen name="GreenHousePage" component={GreenHousePage} /> */}
-          <Stack.Screen name="DetailMonitoringPage" component={DetailMonitoringPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

@@ -13,6 +13,34 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
     },
+    topBarContent:{
+        marginLeft:20,
+        marginLeft:20,
+        flexDirection:'row'
+    },
+    notificationField:{
+        marginHorizontal:20,
+        marginTop:20,
+        justifyContent:'center',
+        alignContent:'center'
+    },
+    notificationCard:{
+        flexDirection:'row',
+        alignContent:'center',
+        alignItems:'center'
+    },
+    arrowBackIcon:{
+        marginRight:20,
+    },
+    iconCard:{
+        width:60,
+        height:60,
+        marginRight:25,
+        marginLeft:10,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:50
+    },
     date:{
         width: '100%',
         height: '10%',
