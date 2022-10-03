@@ -5,6 +5,8 @@ import {
   View,
   Text,
   TouchableOpacity,
+  BackHandler,
+  Alert,
 } from 'react-native';
 import stylesGlobal from '../../utils/style_global';
 import styles from './login_style';
@@ -37,26 +39,26 @@ const LoginPage = () => {
       .catch((error) => console.log(error))
   }
 
-  // const checkToken = () => {
-  //   AsyncStorage.getItem('token').then(value => {
-  //     console.log(value)
-  //     if (value !== null) {
-  //       navigate.navigate('BerandaPage')
-  //     }
+  useEffect(() => {
+    const backAction = () => {
+      Alert.alert("Keluar", "Anda yakin ingin keluar ?", [
+        {
+          text: "Cancel",
+          onPress: () => null,
+          style: "cancel"
+        },
+        { text: "YES", onPress: () => BackHandler.exitApp() }
+      ]);
+      return true;
+    };
 
-  //   }).catch(error => {
-  //     console.log('ah gak ada data anjir')
-  //     console.log(error)
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
 
-  //   })
-
-
-  // }
-  // useEffect(() => {
-  //   checkToken()
-
-  // }, []);
-
+    return () => backHandler.remove();
+  }, []);
 
   return (
     <View style={styles.container}>
