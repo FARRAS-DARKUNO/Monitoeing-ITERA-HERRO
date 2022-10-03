@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage"
 export const CHOICE_MENUS = 'CHOICE_MENUS'
 export const CHOICE_DETAIL = 'CHOICE_DETAIL'
 export const GET_API_LIST_GREENHOUSE = 'GET_API_LIST_GREENHOUSE'
+export const GET_API_DASHBOARD = 'GET_API_DASHBOARD'
 
 // const navigate = useNavigation()
 
@@ -20,5 +21,10 @@ export const setGraphicAndHistory = (data) => ({
 
 export const getApiListGreenhouse = (data) => ({
     type: GET_API_LIST_GREENHOUSE,
+    data: data,
+})
+
+export const getApiDashboard = (data) => ({
+    type: GET_API_DASHBOARD,
     data: data,
 })
