@@ -91,7 +91,6 @@ const styles = StyleSheet.create({
     imageIcon: {
         height: 24,
         width: 24,
-        backgroundColor: 'red',
         resizeMode: 'stretch',
     },
 

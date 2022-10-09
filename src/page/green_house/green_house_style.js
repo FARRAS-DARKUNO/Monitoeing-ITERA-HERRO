@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         paddingTop: 70,
     },
     backView: {
-        width: '50%',
+        width: '70%',
         flexDirection: 'row',
     },
     monitoringAndControlling: {
