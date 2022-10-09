@@ -3,12 +3,11 @@ import { View, Image, SafeAreaView } from 'react-native'
 import SplashScreenStyle from './splash_page_style'
 import { StackActions } from '@react-navigation/native'
 import { useSelector, useDispatch } from 'react-redux';
-import { getApiListGreenhouse } from '../../redux/action'
+import { getApiListGreenhouse, getApiDashboard } from '../../redux/action'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useNavigation } from "@react-navigation/native"
 import axios from 'axios';
-import { listGreenhouse } from '../../utils/api_link';
-import { err } from 'react-native-svg/lib/typescript/xml';
+import { listGreenhouse, dashboardApi } from '../../utils/api_link';
 
 const SplashScreen = () => {
 
@@ -20,7 +19,36 @@ const SplashScreen = () => {
     AsyncStorage.getItem('token').then(async value => {
       console.log(value)
       if (value !== null) {
-        await axios.get('https://iterahero.herokuapp.com/api/v1/greenhouse?size=100', {
+        await axios.get(dashboardApi, {
+          headers: {
+            'Authorization': 'Bearer ' + value
+          }
+        })
+          .then(response => dispatch(getApiDashboard(response.data.data)))
+          .catch(err => {
+            AsyncStorage.clear()
+            navigate.navigate('LoginPage')
+          })
+      }
+      else {
+        console.log('gak ada data')
+
+        navigate.navigate('LoginPage')
+
+      }
+    }).catch(error => {
+      console.log('ah gak ada data anjir')
+      console.log(error)
+      AsyncStorage.clear()
+
+      navigate.navigate('LoginPage')
+
+    })
+
+    AsyncStorage.getItem('token').then(async value => {
+      console.log(value)
+      if (value !== null) {
+        await axios.get(listGreenhouse, {
           headers: {
             'Authorization': 'Bearer ' + value
           }
@@ -51,8 +79,7 @@ const SplashScreen = () => {
 
   const next = (response) => {
     try {
-      dispatch(listGreenhouse(response.data.data))
-      console.log
+      dispatch(getApiListGreenhouse(response))
     } catch (error) {
       console.log(error)
     } finally {

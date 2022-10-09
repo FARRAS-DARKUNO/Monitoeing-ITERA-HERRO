@@ -12,32 +12,17 @@ import {
 import stylesGlobal from '../../utils/style_global';
 import styles from '../beranda/beranda_style';
 import NotificationButton from '../../component/notification_button';
-const BerandaPage = ({ navigation }) => {
-    const [akun, setAkun] = useState([
-        {
-            id: 1,
-            nama: 'Mayonice',
-            date: 'Minggu,  05 Agustus 2022',
-            data: [{
-                id: 1,
-                nama: 'Greenhouse 1',
-                gambar: require('../../../assets//images/greenhouse.jpg'),
+import { useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
-            },
-            {
-                id: 2,
-                nama: 'Greenhouse 2',
-                gambar: require('../../../assets//images/greenhouse.jpg'),
+const BerandaPage = () => {
 
-            },
-            {
-                id: 3,
-                nama: 'Greenhouse 3',
-                gambar: require('../../../assets//images/greenhouse.jpg'),
-            },
+    const navigate = useNavigation()
 
-            ]
-        }]);
+    const { dataListGreenHouse, dataDashboard } = useSelector(
+        state => state.userReducer,
+    );
+
 
     useEffect(() => {
         const backAction = () => {
@@ -60,6 +45,8 @@ const BerandaPage = ({ navigation }) => {
         return () => backHandler.remove();
     }, []);
 
+    console.log(dataDashboard)
+
     return (
         <View style={[stylesGlobal.backgroundBackground, styles.container]}>
             <View style={[stylesGlobal.backgroundBackground, stylesGlobal.backgroundPrimer, styles.profile]} >
@@ -68,7 +55,7 @@ const BerandaPage = ({ navigation }) => {
                         Hallo,
                     </Text>
                     <Text style={[stylesGlobal.secondary, stylesGlobal.header2]}>
-                        {akun[0].nama}
+                        {'Penjaga Kebun'}
                     </Text>
                 </View>
                 <NotificationButton />
@@ -76,7 +63,7 @@ const BerandaPage = ({ navigation }) => {
             <View style={[stylesGlobal.backgroundBackground, stylesGlobal.backgroundPrimer, styles.date]}>
                 <View style={{ marginLeft: '5%' }}>
                     <Text style={[stylesGlobal.onPrimary, stylesGlobal.caption]}>
-                        {akun[0].date}
+                        {'Minggu,  05 Agustus 2022'}
                     </Text>
                 </View>
                 <View style={styles.greenHouseListTitleContainer}>
@@ -84,7 +71,7 @@ const BerandaPage = ({ navigation }) => {
                         List Greenhouse
                     </Text>
                     <Text style={[stylesGlobal.onPrimary, stylesGlobal.header3]} >
-                        {akun[0].data.length} Lokasi
+                        {dataDashboard.greenhouse} Lokasi
                     </Text>
                 </View>
             </View>
@@ -93,19 +80,23 @@ const BerandaPage = ({ navigation }) => {
             <View style={[styles.scroll]}>
                 <View style={[stylesGlobal.surface, styles.scrollContainer]}>
                     <ScrollView >
-                        {akun[0].data.map((item, index) => {
+                        {dataListGreenHouse.map((item, index) => {
                             return (
                                 <>
 
                                     <TouchableWithoutFeedback
 
-                                        onPress={() => console.log('mantap')}
+                                        onPress={() => navigate.navigate('GreenHousePage', {
+                                            id: item.id,
+                                        })}
                                     >
                                         <View key={index.id}
                                             style={[stylesGlobal.backgroundOnPrimary, styles.greenHouseCard]}>
-                                            <Image source={item.gambar} style={styles.greenHousePicture} />
+                                            <Image source={{
+                                                uri: item.image,
+                                            }} style={styles.greenHousePicture} />
                                             <Text style={[stylesGlobal.primer, stylesGlobal.header3, { bottom: 10 }]}>
-                                                {item.nama}
+                                                {item.name}
                                             </Text>
                                         </View>
                                     </TouchableWithoutFeedback>
