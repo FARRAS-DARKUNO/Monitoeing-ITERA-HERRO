@@ -1,136 +1,113 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-    StyleSheet,
     View,
+    ScrollView,
     Text,
-    TouchableOpacity,
-    Image,
-    ScrollView
 } from 'react-native';
 import styles from './monitoring_style';
-import stylesGlobal from '../../utils/style_global';
-import ProgressCircle from 'react-native-progress-circle';
 import PersenMonitoring from '../../component/persen_monitoring';
 import DegreeMonitoring from '../../component/degree_monitoring';
 import ElseMonitoring from '../../component/else_monitoring';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMonitoringById } from '../../redux/action';
+import Loading from '../../component/loading';
 
-const MonitoringScreen = ({ navigation }) => {
-    let DummieData = [
-        {
-            icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTFdJtYeN28Zsl_3Vc9PejqIWbhdKASLgC95ZuILxqHVhzP-F7XvmfHc34zIHRkifWDJU&usqp=CAU',
-            color: '#3399FF',
-            name: 'Kelembapan',
-            status: 1,
-            tanggal: '2021-06-06 17:38:51',
-            jenis: 'persen',
-            unit: 'persen',
-            value: 50,
-        },
-        {
-            icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTFdJtYeN28Zsl_3Vc9PejqIWbhdKASLgC95ZuILxqHVhzP-F7XvmfHc34zIHRkifWDJU&usqp=CAU',
-            color: '#0B8559',
-            name: 'Suhu Lingkungan',
-            status: 0,
-            tanggal: '2021-06-06 17:31:51',
-            jenis: 'derajat',
-            unit: 'Celcius',
-            value: 29.8,
-        },
-        {
-            icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTFdJtYeN28Zsl_3Vc9PejqIWbhdKASLgC95ZuILxqHVhzP-F7XvmfHc34zIHRkifWDJU&usqp=CAU',
-            color: '#B7A925',
-            name: 'Insensitas Cahaya',
-            status: 1,
-            tanggal: '2021-06-03 17:31:51',
-            jenis: 'else',
-            unit: 'Lux',
-            value: 22139.8,
-        },
-        {
-            icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTFdJtYeN28Zsl_3Vc9PejqIWbhdKASLgC95ZuILxqHVhzP-F7XvmfHc34zIHRkifWDJU&usqp=CAU',
-            color: '#3399FF',
-            name: 'Kelembapan',
-            status: 1,
-            tanggal: '2021-06-06 17:38:51',
-            jenis: 'persen',
-            unit: 'persen',
-            value: 50,
-        },
-        {
-            icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTFdJtYeN28Zsl_3Vc9PejqIWbhdKASLgC95ZuILxqHVhzP-F7XvmfHc34zIHRkifWDJU&usqp=CAU',
-            color: '#0B8559',
-            name: 'Suhu Lingkungan',
-            status: 0,
-            tanggal: '2021-06-06 17:31:51',
-            jenis: 'derajat',
-            unit: 'Celcius',
-            value: 29.8,
-        },
-        {
-            icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTFdJtYeN28Zsl_3Vc9PejqIWbhdKASLgC95ZuILxqHVhzP-F7XvmfHc34zIHRkifWDJU&usqp=CAU',
-            color: '#B7A925',
-            name: 'Insensitas Cahaya',
-            status: 1,
-            tanggal: '2021-06-03 17:31:51',
-            jenis: 'else',
-            unit: 'Lux',
-            value: 22139.8,
-        },
-    ]
+const MonitoringScreen = (props) => {
+
+    const id = props.data.idData
+
+    const dispatch = useDispatch()
+
+    const { dataMonitoringByid } = useSelector(
+        state => state.userReducer,
+    );
+
+    const getApiById = () => {
+        AsyncStorage.getItem('token')
+            .then(respons => {
+                console.log('ini monitor' + id)
+                dispatch(getMonitoringById(id, respons))
+            })
+    }
+    useEffect(() => {
+        getApiById()
+    }, []);
 
     return (
-        <View style={{ height: '68%', width: '100%' }}>
-            <ScrollView>
-                <View style={styles.container}>
-                    {
-                        DummieData.map((placement) => {
-                            if (placement.jenis == 'persen') {
-                                return (
-                                    <PersenMonitoring data={{
-                                        icon: placement.icon,
-                                        color: placement.color,
-                                        name: placement.name,
-                                        status: placement.status,
-                                        tanggal: placement.tanggal,
-                                        jenis: placement.jenis,
-                                        value: placement.value,
-                                        unit: placement.unit,
-                                    }} />
-                                )
-                            }
-                            else if (placement.jenis == 'derajat') {
-                                return (
-                                    <DegreeMonitoring data={{
-                                        icon: placement.icon,
-                                        color: placement.color,
-                                        name: placement.name,
-                                        status: placement.status,
-                                        tanggal: placement.tanggal,
-                                        jenis: placement.jenis,
-                                        value: placement.value,
-                                        unit: placement.unit,
-                                    }} />
-                                )
-                            }
-                            else if (placement.jenis == 'else') {
-                                return (
-                                    <ElseMonitoring data={{
-                                        icon: placement.icon,
-                                        color: placement.color,
-                                        name: placement.name,
-                                        status: placement.status,
-                                        tanggal: placement.tanggal,
-                                        jenis: placement.jenis,
-                                        value: placement.value,
-                                        unit: placement.unit,
-                                    }} />
-                                )
-                            }
-                        })
-                    }
-                </View>
-            </ScrollView>
-        </View>
+        <>
+            {
+                dataMonitoringByid != undefined ?
+                    <View style={{ height: '68%', width: '100%' }}>
+                        <ScrollView>
+                            <View style={styles.container}>
+                                {
+                                    dataMonitoringByid.map((placement) => {
+                                        console.log('hallooooo')
+                                        if (placement.category.name == 'Persen') {
+                                            return (
+                                                <PersenMonitoring data={{
+                                                    brand: placement.brand,
+                                                    icon: placement.icon,
+                                                    color: placement.color,
+                                                    name: placement.name,
+                                                    status: 1,
+                                                    tanggal: '2021-06-06 17:38:51',
+                                                    jenis: 'persen',
+                                                    unit: placement.unit_measurement,
+                                                    value: 50,
+                                                    id: placement.id,
+                                                    range_min: placement.range_min,
+                                                    range_max: placement.range_max,
+                                                }} />
+                                            )
+                                        }
+                                        else if (placement.category.name == 'Derajat') {
+                                            return (
+                                                <DegreeMonitoring data={{
+                                                    brand: placement.brand,
+                                                    icon: placement.icon,
+                                                    color: placement.color,
+                                                    name: placement.name,
+                                                    status: 1,
+                                                    tanggal: '2021-06-06 17:38:51',
+                                                    unit: 'persen',
+                                                    unit: placement.unit_measurement,
+                                                    value: 50,
+                                                    id: placement.id,
+                                                    range_min: placement.range_min,
+                                                    range_max: placement.range_max,
+                                                }} />
+                                            )
+                                        }
+                                        else if (placement.category.name == 'Lainnya') {
+                                            return (
+                                                <ElseMonitoring data={{
+                                                    brand: placement.brand,
+                                                    icon: placement.icon,
+                                                    color: placement.color,
+                                                    name: placement.name,
+                                                    status: 1,
+                                                    tanggal: '2021-06-06 17:38:51',
+                                                    jenis: 'persen',
+                                                    unit: placement.unit_measurement,
+                                                    value: 50,
+                                                    id: placement.id,
+                                                    range_min: placement.range_min,
+                                                    range_max: placement.range_max,
+                                                }} />
+                                            )
+                                        }
+                                    })
+                                }
+                            </View>
+                        </ScrollView>
+                    </View> :
+                    <Loading />
+            }
+
+        </>
+
 
     );
 };

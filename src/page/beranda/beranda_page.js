@@ -13,7 +13,11 @@ import stylesGlobal from '../../utils/style_global';
 import styles from '../beranda/beranda_style';
 import NotificationButton from '../../component/notification_button';
 import { useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+
 const BerandaPage = () => {
+
+    const navigate = useNavigation()
 
     const { dataListGreenHouse, dataDashboard } = useSelector(
         state => state.userReducer,
@@ -40,6 +44,8 @@ const BerandaPage = () => {
 
         return () => backHandler.remove();
     }, []);
+
+    console.log(dataDashboard)
 
     return (
         <View style={[stylesGlobal.backgroundBackground, styles.container]}>
@@ -80,7 +86,9 @@ const BerandaPage = () => {
 
                                     <TouchableWithoutFeedback
 
-                                        onPress={() => console.log('mantap')}
+                                        onPress={() => navigate.navigate('GreenHousePage', {
+                                            id: item.id,
+                                        })}
                                     >
                                         <View key={index.id}
                                             style={[stylesGlobal.backgroundOnPrimary, styles.greenHouseCard]}>
