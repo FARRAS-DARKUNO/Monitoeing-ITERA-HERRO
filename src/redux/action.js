@@ -7,8 +7,9 @@ export const GET_API_LIST_GREENHOUSE = 'GET_API_LIST_GREENHOUSE'
 export const GET_API_DASHBOARD = 'GET_API_DASHBOARD'
 export const GET_API_GREENHOUSE_BY_ID = 'GET_API_GREENHOUSE_BY_ID'
 export const GET_API_MONITORING_BY_ID = 'GET_API_MONITORING_BY_ID'
+export const GET_API_CONTROLLING_BY_ID = 'GET_API_CONTROLLING_BY_ID'
 
-import { monitoringApi, greenhouseByUserId } from "../utils/api_link"
+import { monitoringApi, greenhouseByUserId, controllingApi } from "../utils/api_link"
 
 // const navigate = useNavigation()
 
@@ -36,8 +37,6 @@ export const getApiDashboard = (data) => ({
 export const getApiGeenhouseById = (id, token) => {
     try {
         return async dispatch => {
-            console.log(id)
-            console.log(token)
             return await axios.get(greenhouseByUserId + id, {
                 headers: {
                     'Authorization': 'Bearer ' + token
@@ -61,8 +60,6 @@ export const getApiGeenhouseById = (id, token) => {
 export const getMonitoringById = (id, token) => {
     try {
         return async dispatch => {
-            console.log(id)
-            console.log(token)
             return await axios.get(monitoringApi + id, {
                 headers: {
                     'Authorization': 'Bearer ' + token
@@ -73,6 +70,29 @@ export const getMonitoringById = (id, token) => {
                     dispatch(
                         {
                             type: GET_API_MONITORING_BY_ID,
+                            payload: data.data
+                        }
+                    )
+                })
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getControllingById = (id, token) => {
+    try {
+        return async dispatch => {
+            return await axios.get(controllingApi + id, {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+                .then(({ data }) => {
+                    // console.log(data.data)
+                    dispatch(
+                        {
+                            type: GET_API_CONTROLLING_BY_ID,
                             payload: data.data
                         }
                     )

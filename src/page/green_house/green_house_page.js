@@ -41,8 +41,6 @@ const GreenHousePage = ({ route, navigation }) => {
         getApiById()
         // return () => console.log(dataGreenhouseById);
     }, []);
-
-    console.log(id)
     return (
         <>
             {

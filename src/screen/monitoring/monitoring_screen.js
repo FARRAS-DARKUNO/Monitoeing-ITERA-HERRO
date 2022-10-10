@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
     View,
     ScrollView,
-    Text,
 } from 'react-native';
 import styles from './monitoring_style';
 import PersenMonitoring from '../../component/persen_monitoring';
@@ -19,20 +18,23 @@ const MonitoringScreen = (props) => {
 
     const dispatch = useDispatch()
 
-    const { dataMonitoringByid } = useSelector(
+    const { dataMonitoringByid, menuMoCon } = useSelector(
         state => state.userReducer,
     );
 
     const getApiById = () => {
         AsyncStorage.getItem('token')
             .then(respons => {
-                console.log('ini monitor' + id)
                 dispatch(getMonitoringById(id, respons))
             })
     }
+
     useEffect(() => {
         getApiById()
-    }, []);
+    }, [menuMoCon]);
+
+    console.log('testing')
+    console.log(dataMonitoringByid)
 
     return (
         <>
@@ -41,9 +43,8 @@ const MonitoringScreen = (props) => {
                     <View style={{ height: '68%', width: '100%' }}>
                         <ScrollView>
                             <View style={styles.container}>
-                                {
+                                {dataMonitoringByid != undefined ?
                                     dataMonitoringByid.map((placement) => {
-                                        console.log('hallooooo')
                                         if (placement.category.name == 'Persen') {
                                             return (
                                                 <PersenMonitoring data={{
@@ -98,7 +99,7 @@ const MonitoringScreen = (props) => {
                                                 }} />
                                             )
                                         }
-                                    })
+                                    }) : null
                                 }
                             </View>
                         </ScrollView>

@@ -5,6 +5,7 @@ import {
     GET_API_DASHBOARD,
     GET_API_GREENHOUSE_BY_ID,
     GET_API_MONITORING_BY_ID,
+    GET_API_CONTROLLING_BY_ID,
 } from "./action";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
     dataDashboard: [],
     dataGreenhouseById: [],
     dataMonitoringByid: [],
+    dataControllingByid: [],
 }
 
 function userReducer(state = initialState, action) {
@@ -30,6 +32,8 @@ function userReducer(state = initialState, action) {
             return { ...state, dataGreenhouseById: action.payload };
         case GET_API_MONITORING_BY_ID:
             return { ...state, dataMonitoringByid: action.payload };
+        case GET_API_CONTROLLING_BY_ID:
+            return { ...state, dataControllingByid: action.payload };
         default:
             return state;
     }
