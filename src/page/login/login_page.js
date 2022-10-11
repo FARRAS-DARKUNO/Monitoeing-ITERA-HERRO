@@ -62,6 +62,9 @@ const LoginPage = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar
+        animated={true}
+        backgroundColor={'#FFFFF'} />
       <View style={styles.content}>
         <View style={[{ alignItems: 'center' }]}>
           <Text style={[stylesGlobal.primer, stylesGlobal.header1]}>Masuk</Text>

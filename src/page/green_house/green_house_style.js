@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         backgroundColor: '( rgba(0, 0, 0, 0.2)',
         flex: 1,
         paddingHorizontal: 20,
-        paddingTop: 70,
+        paddingTop: 30,
     },
     backView: {
         width: '70%',

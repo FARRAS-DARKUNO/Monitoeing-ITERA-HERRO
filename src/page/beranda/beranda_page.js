@@ -4,10 +4,11 @@ import {
     Text,
     Image,
     ScrollView,
-    TouchableOpacity,
     TouchableWithoutFeedback,
     BackHandler,
-    Alert
+    Alert,
+    SafeAreaView,
+    StatusBar
 } from 'react-native';
 import stylesGlobal from '../../utils/style_global';
 import styles from '../beranda/beranda_style';
@@ -48,7 +49,10 @@ const BerandaPage = () => {
     console.log(dataDashboard)
 
     return (
-        <View style={[stylesGlobal.backgroundBackground, styles.container]}>
+        <SafeAreaView style={[stylesGlobal.backgroundBackground, styles.container]} accessibilityElementsHidden>
+            <StatusBar
+                animated={true}
+                backgroundColor={'#09322D'} />
             <View style={[stylesGlobal.backgroundBackground, stylesGlobal.backgroundPrimer, styles.profile]} >
                 <View style={{ marginLeft: '5%' }}>
                     <Text style={[stylesGlobal.onPrimary, stylesGlobal.header2]}>
@@ -114,7 +118,7 @@ const BerandaPage = () => {
                     </ScrollView>
                 </View>
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 export default BerandaPage;
