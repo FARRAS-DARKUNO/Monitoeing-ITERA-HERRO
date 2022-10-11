@@ -8,8 +8,16 @@ export const GET_API_DASHBOARD = 'GET_API_DASHBOARD'
 export const GET_API_GREENHOUSE_BY_ID = 'GET_API_GREENHOUSE_BY_ID'
 export const GET_API_MONITORING_BY_ID = 'GET_API_MONITORING_BY_ID'
 export const GET_API_CONTROLLING_BY_ID = 'GET_API_CONTROLLING_BY_ID'
+export const GET_FIRST_GREENHOUSE = 'GET_FIRST_GREENHOUSE'
+export const GET_FIRST_DASHBOARD = 'GET_FIRST_DASHBOARD'
 
-import { monitoringApi, greenhouseByUserId, controllingApi } from "../utils/api_link"
+import {
+    monitoringApi,
+    greenhouseByUserId,
+    controllingApi,
+    dashboardApi,
+    listGreenhouse,
+} from "../utils/api_link"
 
 // const navigate = useNavigation()
 
@@ -33,6 +41,52 @@ export const getApiDashboard = (data) => ({
     type: GET_API_DASHBOARD,
     data: data,
 })
+
+export const firstListGreenhouse = (token) => {
+    try {
+        return async dispatch => {
+            return await axios.get(listGreenhouse, {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+                .then(({ data }) => {
+                    // console.log(data.data)
+                    dispatch(
+                        {
+                            type: GET_FIRST_GREENHOUSE,
+                            payload: data
+                        }
+                    )
+                })
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const firstDashboard = (token) => {
+    try {
+        return async dispatch => {
+            return await axios.get(dashboardApi, {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
+                .then(({ data }) => {
+                    // console.log(data.data)
+                    dispatch(
+                        {
+                            type: GET_FIRST_DASHBOARD,
+                            payload: data
+                        }
+                    )
+                })
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 export const getApiGeenhouseById = (id, token) => {
     try {

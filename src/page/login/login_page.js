@@ -33,7 +33,8 @@ const LoginPage = () => {
           alert('Email atau Password Salah')
         }
         else {
-          AsyncStorage.setItem('token', response.data.data.accessToken).then(() => { navigation.navigate('BerandaPage') })
+          AsyncStorage.setItem('token', response.data.data.accessToken)
+            .then(() => { navigation.navigate('BerandaPage') })
         }
       })
       .catch((error) => console.log(error))
@@ -62,9 +63,6 @@ const LoginPage = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar
-        animated={true}
-        backgroundColor={'#FFFFF'} />
       <View style={styles.content}>
         <View style={[{ alignItems: 'center' }]}>
           <Text style={[stylesGlobal.primer, stylesGlobal.header1]}>Masuk</Text>

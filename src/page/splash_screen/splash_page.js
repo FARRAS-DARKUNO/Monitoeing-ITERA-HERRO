@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { View, Image, SafeAreaView } from 'react-native'
 import SplashScreenStyle from './splash_page_style'
-import { StackActions } from '@react-navigation/native'
 import { useSelector, useDispatch } from 'react-redux';
 import { getApiListGreenhouse, getApiDashboard } from '../../redux/action'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -11,12 +10,14 @@ import { listGreenhouse, dashboardApi } from '../../utils/api_link';
 
 const SplashScreen = () => {
 
+  console.log('tes1')
+
   const navigate = useNavigation()
 
   const dispatch = useDispatch()
 
-  const checkDataToken = () => {
-    AsyncStorage.getItem('token').then(async value => {
+  const checkDataToken = async () => {
+    await AsyncStorage.getItem('token').then(async value => {
       console.log(value)
       if (value !== null) {
         await axios.get(dashboardApi, {
@@ -24,7 +25,7 @@ const SplashScreen = () => {
             'Authorization': 'Bearer ' + value
           }
         })
-          .then(response => dispatch(getApiDashboard(response.data.data)))
+          .then(response => dispatch(getApiDashboard(response)))
           .catch(err => {
             AsyncStorage.clear()
             navigate.navigate('LoginPage')
@@ -53,7 +54,7 @@ const SplashScreen = () => {
             'Authorization': 'Bearer ' + value
           }
         })
-          .then(response => next(response.data.data))
+          .then(response => next(response))
           .catch(err => {
             AsyncStorage.clear()
             navigate.navigate('LoginPage')
@@ -91,6 +92,7 @@ const SplashScreen = () => {
 
 
   useEffect(() => {
+    console.log('tes1')
     checkDataToken()
   }, []);
 
