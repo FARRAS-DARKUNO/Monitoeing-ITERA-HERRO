@@ -33,7 +33,8 @@ const LoginPage = () => {
           alert('Email atau Password Salah')
         }
         else {
-          AsyncStorage.setItem('token', response.data.data.accessToken).then(() => { navigation.navigate('BerandaPage') })
+          AsyncStorage.setItem('token', response.data.data.accessToken)
+            .then(() => { navigation.navigate('BerandaPage') })
         }
       })
       .catch((error) => console.log(error))

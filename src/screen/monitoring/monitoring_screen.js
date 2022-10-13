@@ -60,6 +60,7 @@ const MonitoringScreen = (props) => {
                                                     id: placement.id,
                                                     range_min: placement.range_min,
                                                     range_max: placement.range_max,
+                                                    topic_broker: placement.topic_broker
                                                 }} />
                                             )
                                         }
@@ -78,6 +79,7 @@ const MonitoringScreen = (props) => {
                                                     id: placement.id,
                                                     range_min: placement.range_min,
                                                     range_max: placement.range_max,
+                                                    topic_broker: placement.topic_broker
                                                 }} />
                                             )
                                         }
@@ -96,6 +98,7 @@ const MonitoringScreen = (props) => {
                                                     id: placement.id,
                                                     range_min: placement.range_min,
                                                     range_max: placement.range_max,
+                                                    topic_broker: placement.topic_broker
                                                 }} />
                                             )
                                         }

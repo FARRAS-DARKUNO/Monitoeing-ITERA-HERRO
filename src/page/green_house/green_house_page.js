@@ -45,11 +45,11 @@ const GreenHousePage = ({ route, navigation }) => {
         <>
             {
                 isLoading == false && dataGreenhouseById.data != undefined ?
-                    <SafeAreaView style={stylesGlobal.surface} >
+                    <SafeAreaView style={[stylesGlobal.surface, { flex: 1 }]} >
 
                         <StatusBar
                             animated={true}
-                            hidden={true} />
+                            backgroundColor={'#09322D'} />
                         <ImageBackground
                             resizeMode="cover"
                             source={{ uri: dataGreenhouseById.data.image }}

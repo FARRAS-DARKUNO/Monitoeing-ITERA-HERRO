@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     StyleSheet,
     View,
@@ -9,9 +9,22 @@ import {
 import stylesGlobal from '../utils/style_global';
 import ProgressCircle from 'react-native-progress-circle';
 
+
 const PersenMonitoring = (props) => {
 
+    const subtopic = 'user1/gh1/001/1'
+
+    useEffect(() => {
+
+
+
+    })
+
     let data = props.data
+
+    //uncomment if need username or password
+    //   username: 'emqx',
+    //   password: 'public',
 
     return (
         <TouchableOpacity style={styles.persenData}>

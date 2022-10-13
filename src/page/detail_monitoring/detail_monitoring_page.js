@@ -39,8 +39,7 @@ const DetailMonitoringPage = ({ navigation }) => {
         <SafeAreaView style={stylesGlobal.surface}>
             <StatusBar
                 animated={true}
-                hidden={true}
-            />
+                backgroundColor={'#09322D'} />
             <View style={[styles.header, stylesGlobal.backgroundPrimer]}>
                 <TouchableOpacity style={styles.buttonBack}>
                     <Icon name="arrow-back" size={24} color="#ffff" />
