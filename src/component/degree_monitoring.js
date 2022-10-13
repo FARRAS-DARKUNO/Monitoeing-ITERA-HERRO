@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     StyleSheet,
     View,
     Text,
     TouchableOpacity,
-    Image
+    Image,
+    RefreshControl
 } from 'react-native';
 import stylesGlobal from '../utils/style_global';
+import axios from 'axios';
+import { sensorBroker } from '../utils/api_link';
 
 const DegreeMonitoring = (props) => {
 
+    const [value, setValue] = useState(-1)
+
     let data = props.data
+
+    const getDataApiWebBroker = () => {
+        axios.get(sensorBroker + data.topic_broker)
+            .then(response => {
+                setValue(response.data.data.value)
+                console.log(response.data.data.value)
+            })
+    }
+
+    useEffect(() => {
+
+        getDataApiWebBroker()
+        return () => console.log(value)
+    }, [value])
 
     return (
         <TouchableOpacity style={styles.persenData}>
@@ -25,7 +44,7 @@ const DegreeMonitoring = (props) => {
 
                 <View style={{ alignItems: 'center' }}>
                     <Text style={[stylesGlobal.header2, { color: data.color }]}>
-                        {data.value}{'°'}
+                        {value}{'°'}
                     </Text>
                     <Text style={[stylesGlobal.header2, { color: data.color }]}>
                         {data.unit}
