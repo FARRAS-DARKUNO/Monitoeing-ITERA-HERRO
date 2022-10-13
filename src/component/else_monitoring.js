@@ -7,11 +7,69 @@ import {
     Image
 } from 'react-native';
 import stylesGlobal from '../utils/style_global';
-import ProgressCircle from 'react-native-progress-circle';
+import axios from 'axios';
+import { sensorBroker } from '../utils/api_link';
 
 const ElseMonitoring = (props) => {
 
     let data = props.data
+
+    const [value, setValue] = useState(0)
+    const [refresh, setRefresh] = useState(true)
+    const [first, checkFirst] = useState(true)
+
+    const onRefreshSatu = () => {
+        setTimeout(() => {
+            axios.get(sensorBroker + data.id)
+                .then(response => {
+                    setValue(response.data.data[0].value)
+                    console.log(response.data.data[0].value)
+                    setRefresh(true)
+                })
+        }, 1000)
+    }
+
+    const onRefreshDua = () => {
+        setTimeout(() => {
+            axios.get(sensorBroker + data.id)
+                .then(response => {
+                    setValue(response.data.data[0].value)
+                    console.log(response.data.data[0].value)
+                    setRefresh(false)
+                })
+        }, 1000)
+    }
+
+    const getDataApiWebBroker = () => {
+        axios.get(sensorBroker + data.id)
+            .then(response => {
+                setValue(response.data.data[0].value)
+                console.log(response.data.data[0].value)
+                setRefresh(false)
+            })
+    }
+
+    const onRefreshFinal = () => {
+        if (refresh == false) {
+            onRefreshSatu()
+            // console.log('satu')
+        }
+        if (refresh == true) {
+            onRefreshDua()
+            // console.log('dua')
+        }
+    }
+
+    useEffect(() => {
+        if (first == true) {
+            getDataApiWebBroker()
+        }
+        else {
+            onRefreshFinal()
+        }
+
+        return () => checkFirst(false)
+    }, [refresh, first])
 
     return (
         <TouchableOpacity style={styles.persenData}>
@@ -25,12 +83,24 @@ const ElseMonitoring = (props) => {
                 </View>
 
                 <View style={{ alignItems: 'center' }}>
-                    <Text style={[stylesGlobal.header2, { color: data.color }]}>
-                        {data.value}
-                    </Text>
-                    <Text style={[stylesGlobal.header2, { color: data.color }]}>
-                        {data.unit}
-                    </Text>
+                    {
+                        value > data.range_max || value < data.range_min ?
+                            <Text style={[stylesGlobal.header2, stylesGlobal.error]}>
+                                {value}
+                            </Text> :
+                            <Text style={[stylesGlobal.header2, { color: data.color }]}>
+                                {value}
+                            </Text>
+                    }
+                    {
+                        value > data.range_max || value < data.range_min ?
+                            <Text style={[stylesGlobal.header2, stylesGlobal.error]}>
+                                {data.unit}
+                            </Text> :
+                            <Text style={[stylesGlobal.header2, { color: data.color }]}>
+                                {data.unit}
+                            </Text>
+                    }
                 </View>
 
                 <View style={{ alignItems: 'center' }}>

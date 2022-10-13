@@ -65,6 +65,7 @@ const MonitoringScreen = (props) => {
                                             )
                                         }
                                         else if (placement.category.name == 'Derajat') {
+                                            console.log(placement)
                                             return (
                                                 <DegreeMonitoring data={{
                                                     brand: placement.brand,
