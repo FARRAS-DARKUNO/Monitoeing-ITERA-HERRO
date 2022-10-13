@@ -6,4 +6,4 @@ export const controllingApi = 'https://iterahero.herokuapp.com/api/v1/actuator?b
 export const monitoringApi = 'https://iterahero.herokuapp.com/api/v1/sensor?by_id_greenhouse='
 export const deleteGreenhouse = 'https://iterahero.herokuapp.com/api/v1/greenhouse/'
 export const updateGreenhouse = 'https://iterahero.herokuapp.com/api/v1/greenhouse/'
-export const sensorBroker = 'https://iterahero.herokuapp.com/api/v1/sensor_broker?topic_broker='
+export const sensorBroker = 'https://iterahero.herokuapp.com/api/v1/sensor_broker?id_sensor='

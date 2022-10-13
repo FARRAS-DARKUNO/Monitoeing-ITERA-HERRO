@@ -8,23 +8,69 @@ import {
 } from 'react-native';
 import stylesGlobal from '../utils/style_global';
 import ProgressCircle from 'react-native-progress-circle';
-
+import axios from 'axios';
+import { sensorBroker } from '../utils/api_link';
 
 const PersenMonitoring = (props) => {
 
-    const subtopic = 'user1/gh1/001/1'
-
-    useEffect(() => {
-
-
-
-    })
-
     let data = props.data
 
-    //uncomment if need username or password
-    //   username: 'emqx',
-    //   password: 'public',
+    const [value, setValue] = useState(0)
+    const [refresh, setRefresh] = useState(true)
+    const [first, checkFirst] = useState(true)
+
+    const onRefreshSatu = () => {
+        setTimeout(() => {
+            axios.get(sensorBroker + data.id)
+                .then(response => {
+                    setValue(response.data.data[0].value)
+                    console.log(response.data.data[0].value)
+                    setRefresh(true)
+                })
+        }, 1000)
+    }
+
+    const onRefreshDua = () => {
+        setTimeout(() => {
+            axios.get(sensorBroker + data.id)
+                .then(response => {
+                    setValue(response.data.data[0].value)
+                    console.log(response.data.data[0].value)
+                    setRefresh(false)
+                })
+        }, 1000)
+    }
+
+    const getDataApiWebBroker = () => {
+        axios.get(sensorBroker + data.id)
+            .then(response => {
+                setValue(response.data.data[0].value)
+                console.log(response.data.data[0].value)
+                setRefresh(false)
+            })
+    }
+
+    const onRefreshFinal = () => {
+        if (refresh == false) {
+            onRefreshSatu()
+            // console.log('satu')
+        }
+        if (refresh == true) {
+            onRefreshDua()
+            // console.log('dua')
+        }
+    }
+
+    useEffect(() => {
+        if (first == true) {
+            getDataApiWebBroker()
+        }
+        else {
+            onRefreshFinal()
+        }
+
+        return () => checkFirst(false)
+    }, [refresh, first])
 
     return (
         <TouchableOpacity style={styles.persenData}>
@@ -36,17 +82,29 @@ const PersenMonitoring = (props) => {
                         {data.name}
                     </Text>
                 </View>
-
-                <ProgressCircle
-                    percent={data.value}
-                    radius={30}
-                    borderWidth={8}
-                    color={data.color}
-                    shadowColor="#F2F2F2"
-                    bgColor="#fff"
-                >
-                    <Text style={{ fontSize: 14 }}>{data.value}{'%'}</Text>
-                </ProgressCircle>
+                {
+                    value > data.range_max || value < data.range_min ?
+                        <ProgressCircle
+                            percent={value}
+                            radius={30}
+                            borderWidth={8}
+                            color={'#B00020'}
+                            shadowColor="#F2F2F2"
+                            bgColor="#fff"
+                        >
+                            <Text style={{ fontSize: 14 }}>{value}{'%'}</Text>
+                        </ProgressCircle> :
+                        <ProgressCircle
+                            percent={value}
+                            radius={30}
+                            borderWidth={8}
+                            color={data.color}
+                            shadowColor="#F2F2F2"
+                            bgColor="#fff"
+                        >
+                            <Text style={{ fontSize: 14 }}>{value}{'%'}</Text>
+                        </ProgressCircle>
+                }
 
                 <View style={{ alignItems: 'center' }}>
                     <View style={{ flexDirection: 'row' }}>
