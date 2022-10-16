@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-    StyleSheet,
     View,
     Text,
     StatusBar,
@@ -16,22 +15,77 @@ import MenuDetailRiwayat from '../../component/menu_detail_riwayat';
 import GraphicScreen from '../../screen/graphic/graphic_screen';
 import HistoryScreen from '../../screen/history/history_screen';
 import { useSelector } from 'react-redux';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import axios from 'axios';
+import { sensorBroker } from '../../utils/api_link';
 
 
-const DetailMonitoringPage = ({ navigation }) => {
+const DetailMonitoringPage = () => {
+
+    const navigate = useNavigation()
+    const data = useRoute().params
+
+    const [value, setValue] = useState(-1)
+    const [refresh, setRefresh] = useState(true)
+    const [first, checkFirst] = useState(true)
+
+    const onRefreshSatu = () => {
+        setTimeout(() => {
+            axios.get(sensorBroker + data.id)
+                .then(response => {
+                    setValue(response.data.data[0].value)
+                    setRefresh(true)
+                })
+        }, 10000)
+    }
+
+    const onRefreshDua = () => {
+        setTimeout(() => {
+            axios.get(sensorBroker + data.id)
+                .then(response => {
+                    setValue(response.data.data[0].value)
+                    setRefresh(false)
+                })
+        }, 10000)
+    }
+
+    const getDataApiWebBroker = () => {
+        axios.get(sensorBroker + data.id)
+            .then(response => {
+                setValue(response.data.data[0].value)
+                setRefresh(false)
+            })
+    }
+
+    const onRefreshFinal = () => {
+        if (refresh == false) {
+            onRefreshSatu()
+            // console.log('satu')
+        }
+        if (refresh == true) {
+            onRefreshDua()
+            // console.log('dua')
+        }
+    }
+
+    useEffect(() => {
+        if (first == true) {
+            getDataApiWebBroker()
+        }
+        else {
+            onRefreshFinal()
+        }
+
+        return () => checkFirst(false)
+    }, [refresh, first])
+
 
     const { menuGraRi } = useSelector(
         state => state.userReducer,
     );
 
     let dataDummie = {
-        icon: 'https://png.pngtree.com/template/20190316/ourmid/pngtree-water-logo-image_79174.jpg',
-        color: '#10B8DD',
         status: 1,
-        value: 75,
-        jenis: 'persen',
-        unit: 'persen',
-        name: 'Kelembaban Dah'
     }
 
 
@@ -41,11 +95,11 @@ const DetailMonitoringPage = ({ navigation }) => {
                 animated={true}
                 backgroundColor={'#09322D'} />
             <View style={[styles.header, stylesGlobal.backgroundPrimer]}>
-                <TouchableOpacity style={styles.buttonBack}>
+                <TouchableOpacity style={styles.buttonBack} onPress={() => navigate.goBack()}>
                     <Icon name="arrow-back" size={24} color="#ffff" />
                     <View style={stylesGlobal.space10} />
                     <Text style={[stylesGlobal.header2, { color: '#ffff' }]}>
-                        Green House 1
+                        {data.name}
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -59,13 +113,15 @@ const DetailMonitoringPage = ({ navigation }) => {
                 </Text>
             </View>
             <CardDetail data={{
-                icon: dataDummie.icon,
-                color: dataDummie.color,
+                icon: data.icon,
+                color: data.color,
                 status: dataDummie.status,
-                value: dataDummie.value,
-                jenis: dataDummie.jenis,
-                unit: dataDummie.unit,
-                name: dataDummie.name
+                value: value,
+                jenis: data.jenis,
+                unit: data.unit,
+                name: data.name,
+                range_max: data.range_max,
+                range_min: data.range_min,
             }} />
             <View style={stylesGlobal.enter20} />
             <View style={{ paddingHorizontal: 20 }}>
@@ -74,7 +130,7 @@ const DetailMonitoringPage = ({ navigation }) => {
                         <>
                             <MenuDetailRiwayat />
                             <View style={stylesGlobal.enter20} />
-                            <HistoryScreen />
+                            <HistoryScreen data={{ id: data.id }} />
                         </>
                         : null
                 }
@@ -83,7 +139,7 @@ const DetailMonitoringPage = ({ navigation }) => {
                         <>
                             <MenuDetailGraphic />
                             <View style={stylesGlobal.enter20} />
-                            <GraphicScreen />
+                            <GraphicScreen data={{ id: data.id }} />
                         </>
                         : null
                 }

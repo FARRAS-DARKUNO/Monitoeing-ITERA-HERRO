@@ -10,8 +10,11 @@ import {
 import stylesGlobal from '../utils/style_global';
 import axios from 'axios';
 import { sensorBroker } from '../utils/api_link';
+import { useNavigation } from '@react-navigation/native';
 
 const DegreeMonitoring = (props) => {
+
+    const navigate = useNavigation()
 
     const [value, setValue] = useState(-1)
     const [refresh, setRefresh] = useState(true)
@@ -27,7 +30,6 @@ const DegreeMonitoring = (props) => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
                     setValue(response.data.data[0].value)
-                    console.log(response.data.data[0].value)
                     setRefresh(true)
                 })
         }, 1000)
@@ -38,7 +40,6 @@ const DegreeMonitoring = (props) => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
                     setValue(response.data.data[0].value)
-                    console.log(response.data.data[0].value)
                     setRefresh(false)
                 })
         }, 1000)
@@ -48,7 +49,6 @@ const DegreeMonitoring = (props) => {
         axios.get(sensorBroker + data.id)
             .then(response => {
                 setValue(response.data.data[0].value)
-                console.log(response.data.data[0].value)
                 setRefresh(false)
             })
     }
@@ -76,7 +76,18 @@ const DegreeMonitoring = (props) => {
     }, [refresh, first])
 
     return (
-        <TouchableOpacity style={styles.persenData}>
+        <TouchableOpacity style={styles.persenData} onPress={() => {
+            navigate.navigate('DetailMonitoringPage', {
+                id: data.id,
+                icon: data.icon,
+                color: data.color,
+                unit: data.unit,
+                range_max: data.range_max,
+                range_min: data.range_min,
+                name: data.name,
+                jenis: data.jenis,
+            })
+        }}>
             <View style={styles.insideCard}>
                 <View style={styles.titleAndIcon}>
                     <Image source={{ uri: data.icon }} style={styles.imageIcon} />

@@ -32,19 +32,19 @@ const CardDetail = (props) => {
                             </Text>
 
                             {
-                                data.jenis == 'persen' ?
+                                data.jenis == 'Persen' ?
                                     <Text style={[stylesGlobal.header2, { color: '#FFFF' }]}>
                                         {data.value}{'%'}
                                     </Text> : null
                             }
                             {
-                                data.jenis == 'derajat' ?
+                                data.jenis == 'Derajat' ?
                                     <Text style={[stylesGlobal.header2, { color: '#FFFF' }]}>
                                         {data.value}{'°'}
                                     </Text> : null
                             }
                             {
-                                data.jenis == 'else' ?
+                                data.jenis == 'Lainnya' ?
                                     <Text style={[stylesGlobal.header2, { color: '#FFFF' }]}>
                                         {data.value}
                                     </Text> : null
