@@ -18,3 +18,5 @@ export const riwayat = (id, month, year) => {
 }
 
 export const yearData = 'https://iterahero.herokuapp.com/api/v1/grafik/year/'
+
+export const switchAkuator = 'https://iterahero.herokuapp.com/api/v1/actuator-log'
