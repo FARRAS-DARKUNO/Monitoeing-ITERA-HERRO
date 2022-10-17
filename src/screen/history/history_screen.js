@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     ScrollView,
     View,
@@ -7,149 +7,135 @@ import {
 import styles from './history_style';
 import stylesGlobal from '../../utils/style_global';
 import SelectDropdown from 'react-native-select-dropdown'
+import { riwayat, yearData } from '../../utils/api_link';
+import axios from 'axios';
+import Loading from '../../component/loading';
 
-const HistoryScreen = ({ navigation }) => {
+const HistoryScreen = (props) => {
 
-    const countries = [2021, 2022, 2023, 2024]
+    const id = props.data.id
+    const name = props.data.name
+
+    const countries = ['2023', '2023', '2024']
+    const [month, setMonth] = useState(1)
+    const [year, setYear] = useState(2001)
+    const [data, setData] = useState(null)
+    const [constYear, setConstYear] = useState([])
+    const [isHave, checkHave] = useState(true)
+
     const bulan = ['Januari', 'Februari', 'Maret', "April", "Mei", 'Juni', "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
 
-    const data = {
-        labels: ["1", "2", "3", "4"],
-        datasets: [
-            {
-                data: [20.3, 45.2, 28.4, 20.2],
-                color: (opacity = 1) => `rgba(20, 69, 62, ${opacity})`, // optional
-                strokeWidth: 2 // optional
-            }
-        ],
-    };
+    const dataYear = async () => {
+        await axios.get(yearData + id)
+            .then(respons => {
+                console.log(respons.data.data)
+                setYear(respons.data.data[0].data)
+                for (let i = 0; i < respons.data.data.length; i++) {
+                    setConstYear(oldArray => [...oldArray, (respons.data.data[i].data)])
+                }
+                checkHave(false)
+            })
+    }
 
-    const dataAvarage = [
-        {
-            date: '27-07-2001',
-            value: '27.76747',
-        },
-        {
-            date: '27-07-2001',
-            value: '27.76747',
-        },
-        {
-            date: '27-07-2001',
-            value: '27.76777',
-        },
-        {
-            date: '27-07-2001',
-            value: '27.70747',
-        },
-        {
-            date: '27-07-2001',
-            value: '27.76747',
-        },
-        {
-            date: '27-07-2001',
-            value: '27.76747',
-        },
-        {
-            date: '27-07-2001',
-            value: '27.76777',
-        },
-        {
-            date: '27-07-2001',
-            value: '27.70747',
-        },
-        {
-            date: '27-07-2001',
-            value: '27.76747',
-        },
-        {
-            date: '27-07-2001',
-            value: '27.76747',
-        },
-        {
-            date: '27-07-2001',
-            value: '27.76777',
-        },
-        {
-            date: '27-07-2001',
-            value: '27.70747',
-        },
-    ]
+    useEffect(() => {
+        dataYear()
 
+        axios.get(riwayat(id, month, year))
+            .then(respons => {
+                setData(respons.data)
+                // console.log(respons.data)
+            })
+        return () => {
+            setData(null)
+            setConstYear([])
+        }
+    }, [month, year])
+
+    console.log(constYear)
 
     return (
-        <View style={{ width: '100%' }}>
-            <View style={styles.statistik}>
-                <Text style={[stylesGlobal.header2, stylesGlobal.primer]}>
-                    Rata-rata
-                </Text>
-                <View style={styles.viewBottom}>
-                    <SelectDropdown
-                        data={countries}
-                        buttonStyle={styles.buttonSelectYear}
-                        buttonTextStyle={styles.textButton}
-                        defaultValue={countries[0]}
-                        onSelect={(selectedItem, index) => {
-                            console.log(selectedItem, index)
-                        }}
-                        buttonTextAfterSelection={(selectedItem, index) => {
-                            return selectedItem
-                        }}
-                        rowTextForSelection={(item, index) => {
-                            return item
-                        }}
-                    />
+        <>
+            {
+                isHave == false ?
+                    <View style={{ width: '100%' }}>
+                        <View style={styles.statistik}>
+                            <Text style={[stylesGlobal.header2, stylesGlobal.primer]}>
+                                Rata-rata
+                            </Text>
+                            <View style={styles.viewBottom}>
+                                <SelectDropdown
+                                    data={constYear}
+                                    buttonStyle={styles.buttonSelectYear}
+                                    buttonTextStyle={styles.textButton}
+                                    defaultValue={constYear[0]}
+                                    onSelect={(selectedItem, index) => {
+                                        setYear(selectedItem)
+                                    }}
+                                    buttonTextAfterSelection={(selectedItem, index) => {
+                                        return selectedItem
+                                    }}
+                                    rowTextForSelection={(item, index) => {
+                                        return item
+                                    }}
+                                />
 
-                    <SelectDropdown
-                        data={bulan}
-                        buttonStyle={styles.buttonSelectMonth}
-                        buttonTextStyle={styles.textButton}
-                        defaultValue={bulan[0]}
-                        onSelect={(selectedItem, index) => {
-                            console.log(selectedItem, index)
-                        }}
-                        buttonTextAfterSelection={(selectedItem, index) => {
-                            return selectedItem
-                        }}
-                        rowTextForSelection={(item, index) => {
-                            return item
-                        }}
-                    />
-                </View>
+                                <SelectDropdown
+                                    data={bulan}
+                                    buttonStyle={styles.buttonSelectMonth}
+                                    buttonTextStyle={styles.textButton}
+                                    defaultValue={bulan[0]}
+                                    onSelect={(selectedItem, index) => {
+                                        setMonth(index + 1)
+                                        console.log(selectedItem, index)
+                                    }}
+                                    buttonTextAfterSelection={(selectedItem, index) => {
+                                        return selectedItem
+                                    }}
+                                    rowTextForSelection={(item, index) => {
+                                        return item
+                                    }}
+                                />
+                            </View>
+                        </View>
+                        <View style={stylesGlobal.enter20} />
+                        {
+                            data != null ?
+                                <View style={styles.scrolling}>
+                                    {
+                                        data.code == 200 ?
+                                            <ScrollView>
+                                                {
+                                                    data.data.map((note) => (
 
-            </View>
-            <View style={stylesGlobal.enter20} />
-            <View style={styles.scrolling}>
-                <ScrollView>
-                    {
-                        dataAvarage.map((note) => (
+                                                        <View style={styles.dataAvarage}>
+                                                            <View>
+                                                                <Text style={[stylesGlobal.header2, stylesGlobal.onBackground]}>
+                                                                    {name}
+                                                                </Text>
+                                                                <Text style={[stylesGlobal.body2, stylesGlobal.onBackground]}>
+                                                                    {note.label}
+                                                                </Text>
+                                                            </View>
+                                                            <View style={[styles.valueAvarage, { backgroundColor: '#10B8DD' }]}>
+                                                                <Text style={[stylesGlobal.header3, stylesGlobal.surface, { paddingHorizontal: 10 }]}>
+                                                                    {note.data}
+                                                                </Text>
+                                                            </View>
+                                                        </View>
 
-                            <>
+                                                    ))
+                                                }
 
-                                <View style={styles.dataAvarage}>
-                                    <View>
-                                        <Text style={[stylesGlobal.header2, stylesGlobal.onBackground]}>
-                                            Kelambaban
-                                        </Text>
-                                        <Text style={[stylesGlobal.body2, stylesGlobal.onBackground]}>
-                                            {note.date}
-                                        </Text>
-                                    </View>
-                                    <View style={[styles.valueAvarage, { backgroundColor: '#10B8DD' }]}>
-                                        <Text style={[stylesGlobal.header3, stylesGlobal.surface, { paddingHorizontal: 10 }]}>
-                                            {note.value}
-                                        </Text>
-                                    </View>
-                                </View>
+                                            </ScrollView> : <View />
+                                    }
+                                </View> :
+                                <Loading />
+                        }
 
-                            </>
-
-                        ))
-                    }
-
-                </ScrollView>
-            </View>
-
-        </View>
+                    </View> :
+                    <Loading />
+            }
+        </>
     );
 };
 

@@ -130,7 +130,10 @@ const DetailMonitoringPage = () => {
                         <>
                             <MenuDetailRiwayat />
                             <View style={stylesGlobal.enter20} />
-                            <HistoryScreen data={{ id: data.id }} />
+                            <HistoryScreen data={{
+                                id: data.id,
+                                name: data.name
+                            }} />
                         </>
                         : null
                 }
