@@ -7,3 +7,6 @@ export const monitoringApi = 'https://iterahero.herokuapp.com/api/v1/sensor?by_i
 export const deleteGreenhouse = 'https://iterahero.herokuapp.com/api/v1/greenhouse/'
 export const updateGreenhouse = 'https://iterahero.herokuapp.com/api/v1/greenhouse/'
 export const sensorBroker = 'https://iterahero.herokuapp.com/api/v1/sensor_broker?id_sensor='
+
+export const grafikSensor = 'https://iterahero.herokuapp.com/api/v1/grafik/'
+export const subGrafikSensor = '?getDateQuery='
