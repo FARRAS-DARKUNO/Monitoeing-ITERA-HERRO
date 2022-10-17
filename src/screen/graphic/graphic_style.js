@@ -36,8 +36,18 @@ const styles = StyleSheet.create({
     },
     graphicbar: {
         width: '100%',
-        height: 250,
-        // backgroundColor: 'red',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    container: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 20,
+        marginBottom: 15,
+    },
+    char: {
+        borderRadius: 10,
+        backgroundColor: '#FFFF'
     }
 });
 

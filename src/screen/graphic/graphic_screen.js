@@ -117,7 +117,7 @@ const GraphicScreen = (props) => {
                                         height={250}
                                         verticalLabelRotation={30}
                                         chartConfig={{
-                                            backgroundGradientFrom: "#FFFF",
+                                            backgroundGradientFrom: "#ffff",
                                             backgroundGradientFromOpacity: 1,
                                             backgroundGradientTo: "#FFFF",
                                             backgroundGradientToOpacity: 0.5,
@@ -126,6 +126,7 @@ const GraphicScreen = (props) => {
                                             barPercentage: 0.5,
                                             useShadowColorFromDataset: false
                                         }}
+                                        style={styles.char}
                                         bezier
                                     /> :
                                     <Loading />
