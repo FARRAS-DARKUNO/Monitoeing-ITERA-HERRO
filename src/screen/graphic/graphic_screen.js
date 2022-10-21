@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-    StyleSheet,
     View,
     Text,
     Dimensions
@@ -31,14 +30,11 @@ const GraphicScreen = (props) => {
     const getData = () => {
         axios.get(grafikSensor + id + subGrafikSensor + filter)
             .then(response => {
-                console.log(response.data.data)
                 setAllData(response.data.data)
                 if (response.data.data.length > 0) {
-                    console.log(response.data.data.length)
                     for (let i = 0; i < response.data.data.length; i++) {
                         setLabel(oldArray => [...oldArray, (response.data.data[i].label)])
                         setData(oldArray => [...oldArray, (response.data.data[i].data)])
-                        console.log('loading')
                     }
                     setfinish(true)
                 }
@@ -48,16 +44,12 @@ const GraphicScreen = (props) => {
     useEffect(() => {
 
         getData()
-        console.log(grafikSensor + id + subGrafikSensor + filter)
         return () => {
             setLabel([])
             setData([])
             setfinish(false)
         }
     }, [filter])
-    console.log(data)
-    console.log('ini label')
-    console.log(label.length == 0)
     return (
         <>
             {
@@ -75,7 +67,7 @@ const GraphicScreen = (props) => {
                                     buttonStyle={styles.buttonSelectMonth}
                                     buttonTextStyle={styles.textButton}
                                     defaultValue={bulan[0]}
-                                    onSelect={(selectedItem, index) => {
+                                    onSelect={(selectedItem) => {
                                         if (selectedItem == 'Mingguan') {
                                             setFilter('Week')
                                         }
@@ -86,10 +78,10 @@ const GraphicScreen = (props) => {
                                             setFilter('Year')
                                         }
                                     }}
-                                    buttonTextAfterSelection={(selectedItem, index) => {
+                                    buttonTextAfterSelection={(selectedItem) => {
                                         return selectedItem
                                     }}
-                                    rowTextForSelection={(item, index) => {
+                                    rowTextForSelection={(item) => {
                                         return item
                                     }}
                                 />

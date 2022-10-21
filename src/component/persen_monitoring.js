@@ -32,7 +32,7 @@ const PersenMonitoring = (props) => {
                     setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(true)
                 })
-        }, 1000)
+        }, 10000)
     }
 
     const onRefreshDua = () => {
@@ -44,7 +44,7 @@ const PersenMonitoring = (props) => {
                     setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(false)
                 })
-        }, 1000)
+        }, 10000)
     }
 
     const getDataApiWebBroker = () => {
@@ -60,11 +60,9 @@ const PersenMonitoring = (props) => {
     const onRefreshFinal = () => {
         if (refresh == false) {
             onRefreshSatu()
-            // console.log('satu')
         }
         if (refresh == true) {
             onRefreshDua()
-            // console.log('dua')
         }
     }
 

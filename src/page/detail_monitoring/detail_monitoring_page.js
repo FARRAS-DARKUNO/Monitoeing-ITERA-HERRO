@@ -65,11 +65,9 @@ const DetailMonitoringPage = () => {
     const onRefreshFinal = () => {
         if (refresh == false) {
             onRefreshSatu()
-            // console.log('satu')
         }
         if (refresh == true) {
             onRefreshDua()
-            // console.log('dua')
         }
     }
 

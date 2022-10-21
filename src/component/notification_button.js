@@ -49,7 +49,7 @@ const NotificationButton = () => {
                 )
             }
             {
-                count.length >= 9 ? (
+                count >= 9 ? (
                     <View style={[stylesGlobal.backgroundOnError, styles.backgroundNotificationNumber]}>
                         <Text style={[stylesGlobal.body1, { color: '#FFFF' }]}>9+</Text>
                     </View>

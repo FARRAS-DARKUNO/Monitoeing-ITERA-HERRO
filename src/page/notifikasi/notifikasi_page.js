@@ -23,7 +23,6 @@ const NotifikasiPage = () => {
       }
     })
       .then(respond => {
-        console.log(respond.data.data[0])
         setList(respond.data.data)
       })
   }
@@ -33,7 +32,7 @@ const NotifikasiPage = () => {
       headers: {
         'Authorization': 'Bearer ' + token
       }
-    }).then(note => { console.log(note) })
+    })
   }
 
   useEffect(() => {

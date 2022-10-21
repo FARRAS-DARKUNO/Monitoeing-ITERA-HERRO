@@ -33,8 +33,7 @@ const MonitoringScreen = (props) => {
         getApiById()
     }, [menuMoCon]);
 
-    console.log('testing')
-    console.log(dataMonitoringByid)
+
 
     return (
         <>
@@ -64,7 +63,7 @@ const MonitoringScreen = (props) => {
                                             )
                                         }
                                         else if (placement.category.name == 'Derajat') {
-                                            console.log(placement)
+
                                             return (
                                                 <DegreeMonitoring data={{
                                                     brand: placement.brand,

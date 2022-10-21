@@ -35,12 +35,12 @@ const BerandaPage = () => {
     const logout = () => {
         Alert.alert("Keluar", "Anda yakin ingin keluar ?", [
             {
-                text: "Cancel",
+                text: "Tidak",
                 onPress: () => null,
                 style: "cancel"
             },
             {
-                text: "Logout", onPress: () => {
+                text: "Keluar", onPress: () => {
                     AsyncStorage.clear().then(() => navigate.navigate('LoginPage'))
                 }
             }
@@ -48,9 +48,7 @@ const BerandaPage = () => {
     }
 
     const CheckData = () => {
-        console.log(dataDashboard.code != 200)
         if (dataDashboard.code != 200 || dataListGreenHouse.code != 200) {
-            console.log('mencoba')
             AsyncStorage.getItem('token')
                 .then(response => {
                     dispatch(firstDashboard(response))
@@ -63,13 +61,13 @@ const BerandaPage = () => {
         CheckData()
 
         const backAction = () => {
-            Alert.alert("Keluar", "Anda yakin ingin keluar ?", [
+            Alert.alert("Menutup Aplikasi", "Anda yakin ingin menutup aplikasi ?", [
                 {
-                    text: "Cancel",
+                    text: "Tidak",
                     onPress: () => null,
                     style: "cancel"
                 },
-                { text: "YES", onPress: () => BackHandler.exitApp() }
+                { text: "Ya", onPress: () => BackHandler.exitApp() }
             ]);
             return true;
         };
@@ -81,6 +79,7 @@ const BerandaPage = () => {
 
         return () => backHandler.remove();
     }, []);
+
 
     return (
         <>
@@ -97,7 +96,7 @@ const BerandaPage = () => {
                                     Hallo,
                                 </Text>
                                 <Text style={[stylesGlobal.secondary, stylesGlobal.header2]}>
-                                    {'Penjaga Kebun'}
+                                    {dataDashboard.data.name}
                                 </Text>
                             </View>
                             <View style={{ flexDirection: 'row', alignItems: 'center', marginRight: 20 }}>
@@ -132,17 +131,18 @@ const BerandaPage = () => {
                                         return (
                                             <>
 
-                                                <TouchableWithoutFeedback
+                                                <TouchableWithoutFeedback key={index}
 
                                                     onPress={() => navigate.navigate('GreenHousePage', {
                                                         id: item.id,
                                                     })}
                                                 >
-                                                    <View key={index.id}
+                                                    <View
                                                         style={[stylesGlobal.backgroundOnPrimary, styles.greenHouseCard]}>
                                                         <Image source={{
                                                             uri: item.image,
-                                                        }} style={styles.greenHousePicture} />
+                                                        }} style={styles.greenHousePicture}
+                                                        />
                                                         <Text style={[stylesGlobal.primer, stylesGlobal.header3, { bottom: 10 }]}>
                                                             {item.name}
                                                         </Text>

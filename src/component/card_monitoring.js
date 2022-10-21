@@ -14,7 +14,6 @@ import Loading from './loading';
 const CardMonitoring = (props) => {
 
     const data = props.data
-    console.log(data.status_lifecycle)
     const [isLoading, setIsloading] = useState(false)
 
     const valueSwitchConvert = () => {
@@ -36,7 +35,6 @@ const CardMonitoring = (props) => {
                 on_off_status: 0
             })
                 .then(response => {
-                    console.log(response)
                     setIsloading(false)
                     setIsEnabled(replace => !replace)
                 })
@@ -47,7 +45,6 @@ const CardMonitoring = (props) => {
                 on_off_status: 1
             })
                 .then(response => {
-                    console.log(response)
                     setIsloading(false)
                     setIsEnabled(replace => !replace)
                 })
@@ -69,8 +66,8 @@ const CardMonitoring = (props) => {
                         </View>
 
                         <Switch
-                            trackColor={{ false: "#767577", true: "#767577" }}
-                            thumbColor={isEnabled ? data.color : "#f4f3f4"}
+                            trackColor={{ false: "#767577", true: "#D3D3D3" }}
+                            thumbColor={isEnabled ? "green" : "#f4f3f4"}
                             ios_backgroundColor="#3e3e3e"
                             onValueChange={() => {
                                 setIsloading(true)

@@ -22,10 +22,7 @@ const DegreeMonitoring = (props) => {
     const [first, checkFirst] = useState(true)
     const [date, setDate] = useState('')
 
-    let dummie = 20
-
     let data = props.data
-    // console.log(data.id)
 
     const onRefreshSatu = () => {
         setTimeout(() => {
@@ -35,7 +32,7 @@ const DegreeMonitoring = (props) => {
                     setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(true)
                 })
-        }, 1000)
+        }, 10000)
     }
 
     const onRefreshDua = () => {
@@ -46,7 +43,7 @@ const DegreeMonitoring = (props) => {
                     setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(false)
                 })
-        }, 1000)
+        }, 10000)
     }
 
     const getDataApiWebBroker = () => {
@@ -61,11 +58,9 @@ const DegreeMonitoring = (props) => {
     const onRefreshFinal = () => {
         if (refresh == false) {
             onRefreshSatu()
-            // console.log('satu')
         }
         if (refresh == true) {
             onRefreshDua()
-            // console.log('dua')
         }
     }
 

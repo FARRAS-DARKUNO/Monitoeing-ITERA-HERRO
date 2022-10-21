@@ -10,15 +10,12 @@ import { listGreenhouse, dashboardApi } from '../../utils/api_link';
 
 const SplashScreen = () => {
 
-  console.log('tes1')
-
   const navigate = useNavigation()
 
   const dispatch = useDispatch()
 
   const checkDataToken = async () => {
     await AsyncStorage.getItem('token').then(async value => {
-      console.log(value)
       if (value !== null) {
         await axios.get(dashboardApi, {
           headers: {
@@ -32,14 +29,11 @@ const SplashScreen = () => {
           })
       }
       else {
-        console.log('gak ada data')
 
         navigate.navigate('LoginPage')
 
       }
-    }).catch(error => {
-      console.log('ah gak ada data anjir')
-      console.log(error)
+    }).catch(() => {
       AsyncStorage.clear()
 
       navigate.navigate('LoginPage')
@@ -47,7 +41,6 @@ const SplashScreen = () => {
     })
 
     AsyncStorage.getItem('token').then(async value => {
-      console.log(value)
       if (value !== null) {
         await axios.get(listGreenhouse, {
           headers: {
@@ -55,20 +48,16 @@ const SplashScreen = () => {
           }
         })
           .then(response => next(response))
-          .catch(err => {
+          .catch(() => {
             AsyncStorage.clear()
             navigate.navigate('LoginPage')
           })
       }
       else {
-        console.log('gak ada data')
-
         navigate.navigate('LoginPage')
 
       }
-    }).catch(error => {
-      console.log('ah gak ada data anjir')
-      console.log(error)
+    }).catch(() => {
       AsyncStorage.clear()
 
       navigate.navigate('LoginPage')
@@ -86,13 +75,11 @@ const SplashScreen = () => {
     } finally {
       navigate.navigate('BerandaPage')
     }
-    // console.log(response.data.data)
   }
 
 
 
   useEffect(() => {
-    console.log('tes1')
     checkDataToken()
   }, []);
 

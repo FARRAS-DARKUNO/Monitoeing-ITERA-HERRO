@@ -13,7 +13,6 @@ import Loading from '../../component/loading';
 const ContrillingScreen = (props) => {
 
     const id = props.data.idData
-    console.log(id)
 
     const dispatch = useDispatch()
 
@@ -32,7 +31,6 @@ const ContrillingScreen = (props) => {
         getApiById()
     }, [menuMoCon]);
 
-    console.log(dataControllingByid)
 
     return (
         <>

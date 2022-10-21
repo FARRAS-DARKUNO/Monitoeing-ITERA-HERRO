@@ -16,7 +16,6 @@ const HistoryScreen = (props) => {
     const id = props.data.id
     const name = props.data.name
 
-    const countries = ['2023', '2023', '2024']
     const [month, setMonth] = useState(1)
     const [year, setYear] = useState(2001)
     const [data, setData] = useState(null)
@@ -28,7 +27,6 @@ const HistoryScreen = (props) => {
     const dataYear = async () => {
         await axios.get(yearData + id)
             .then(respons => {
-                console.log(respons.data.data)
                 setYear(respons.data.data[0].data)
                 for (let i = 0; i < respons.data.data.length; i++) {
                     setConstYear(oldArray => [...oldArray, (respons.data.data[i].data)])
@@ -43,7 +41,6 @@ const HistoryScreen = (props) => {
         axios.get(riwayat(id, month, year))
             .then(respons => {
                 setData(respons.data)
-                // console.log(respons.data)
             })
         return () => {
             setData(null)
@@ -51,7 +48,6 @@ const HistoryScreen = (props) => {
         }
     }, [month, year])
 
-    console.log(constYear)
 
     return (
         <>
@@ -86,7 +82,6 @@ const HistoryScreen = (props) => {
                                     defaultValue={bulan[0]}
                                     onSelect={(selectedItem, index) => {
                                         setMonth(index + 1)
-                                        console.log(selectedItem, index)
                                     }}
                                     buttonTextAfterSelection={(selectedItem, index) => {
                                         return selectedItem

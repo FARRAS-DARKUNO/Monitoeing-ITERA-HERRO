@@ -43,116 +43,101 @@ export const getApiDashboard = (data) => ({
 })
 
 export const firstListGreenhouse = (token) => {
-    try {
-        return async dispatch => {
-            return await axios.get(listGreenhouse, {
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                }
+
+    return async dispatch => {
+        return await axios.get(listGreenhouse, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(({ data }) => {
+                dispatch(
+                    {
+                        type: GET_FIRST_GREENHOUSE,
+                        payload: data
+                    }
+                )
             })
-                .then(({ data }) => {
-                    // console.log(data.data)
-                    dispatch(
-                        {
-                            type: GET_FIRST_GREENHOUSE,
-                            payload: data
-                        }
-                    )
-                })
-        }
-    } catch (error) {
-        console.log(error);
     }
+
 }
 
 export const firstDashboard = (token) => {
-    try {
-        return async dispatch => {
-            return await axios.get(dashboardApi, {
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                }
+
+    return async dispatch => {
+        return await axios.get(dashboardApi, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(({ data }) => {
+                dispatch(
+                    {
+                        type: GET_FIRST_DASHBOARD,
+                        payload: data
+                    }
+                )
             })
-                .then(({ data }) => {
-                    // console.log(data.data)
-                    dispatch(
-                        {
-                            type: GET_FIRST_DASHBOARD,
-                            payload: data
-                        }
-                    )
-                })
-        }
-    } catch (error) {
-        console.log(error);
     }
+
 }
 
 export const getApiGeenhouseById = (id, token) => {
-    try {
-        return async dispatch => {
-            return await axios.get(greenhouseByUserId + id, {
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                }
+
+    return async dispatch => {
+        return await axios.get(greenhouseByUserId + id, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(({ data }) => {
+                dispatch(
+                    {
+                        type: GET_API_GREENHOUSE_BY_ID,
+                        payload: data
+                    }
+                )
             })
-                .then(({ data }) => {
-                    // console.log(data.data)
-                    dispatch(
-                        {
-                            type: GET_API_GREENHOUSE_BY_ID,
-                            payload: data
-                        }
-                    )
-                })
-        }
-    } catch (error) {
-        console.log(error);
     }
+
 }
 
 export const getMonitoringById = (id, token) => {
-    try {
-        return async dispatch => {
-            return await axios.get(monitoringApi + id, {
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                }
+
+    return async dispatch => {
+        return await axios.get(monitoringApi + id, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(({ data }) => {
+                dispatch(
+                    {
+                        type: GET_API_MONITORING_BY_ID,
+                        payload: data.data
+                    }
+                )
             })
-                .then(({ data }) => {
-                    // console.log(data.data)
-                    dispatch(
-                        {
-                            type: GET_API_MONITORING_BY_ID,
-                            payload: data.data
-                        }
-                    )
-                })
-        }
-    } catch (error) {
-        console.log(error);
     }
+
 }
 
 export const getControllingById = (id, token) => {
-    try {
-        return async dispatch => {
-            return await axios.get(controllingApi + id, {
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                }
+
+    return async dispatch => {
+        return await axios.get(controllingApi + id, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(({ data }) => {
+                dispatch(
+                    {
+                        type: GET_API_CONTROLLING_BY_ID,
+                        payload: data.data
+                    }
+                )
             })
-                .then(({ data }) => {
-                    // console.log(data.data)
-                    dispatch(
-                        {
-                            type: GET_API_CONTROLLING_BY_ID,
-                            payload: data.data
-                        }
-                    )
-                })
-        }
-    } catch (error) {
-        console.log(error);
     }
+
 }
