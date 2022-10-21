@@ -41,3 +41,11 @@ export const convertCreateAt = (data) => {
 
     return date + '  ' + clock[0] + ':' + clock[1]
 }
+
+export const convertnotivTime = (data) => {
+
+    let temp = data.replace('T', " ").replace("Z", " +0700");
+    let convert = moment(temp, "YYYYMMDD").fromNow();
+
+    return convert
+}

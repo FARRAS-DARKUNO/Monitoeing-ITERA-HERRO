@@ -10,7 +10,7 @@ import SplashScreen from './src/page/splash_screen/splash_page';
 //redux
 import { Provider } from 'react-redux';
 import { Store } from './src/redux/store';
-// import NotifikasiPage from './src/page/notifikasi/notifikasi_page';
+import NotifikasiPage from './src/page/notifikasi/notifikasi_page';
 // import NoHaveInternetPage from './src/page/no_have_internet/no_have_internet_page';
 
 const Stack = createNativeStackNavigator();
@@ -27,6 +27,7 @@ const App = () => {
           <Stack.Screen name="BerandaPage" component={BerandaPage} />
           <Stack.Screen name="GreenHousePage" component={GreenHousePage} />
           <Stack.Screen name="DetailMonitoringPage" component={DetailMonitoringPage} />
+          <Stack.Screen name="NotifikasiPage" component={NotifikasiPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
