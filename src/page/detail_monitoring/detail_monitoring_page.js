@@ -18,6 +18,7 @@ import { useSelector } from 'react-redux';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import axios from 'axios';
 import { sensorBroker } from '../../utils/api_link';
+import { convertCreateAt } from '../../utils/moment';
 
 
 const DetailMonitoringPage = () => {
@@ -28,12 +29,14 @@ const DetailMonitoringPage = () => {
     const [value, setValue] = useState(-1)
     const [refresh, setRefresh] = useState(true)
     const [first, checkFirst] = useState(true)
+    const [date, setDate] = useState('')
 
     const onRefreshSatu = () => {
         setTimeout(() => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
                     setValue(response.data.data[0].value)
+                    setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(true)
                 })
         }, 10000)
@@ -44,6 +47,7 @@ const DetailMonitoringPage = () => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
                     setValue(response.data.data[0].value)
+                    setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(false)
                 })
         }, 10000)
@@ -53,6 +57,7 @@ const DetailMonitoringPage = () => {
         axios.get(sensorBroker + data.id)
             .then(response => {
                 setValue(response.data.data[0].value)
+                setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                 setRefresh(false)
             })
     }
@@ -109,7 +114,7 @@ const DetailMonitoringPage = () => {
                     Detail
                 </Text>
                 <Text style={[stylesGlobal.header3, stylesGlobal.primer]}>
-                    2021-06-06 17:38:52
+                    {date}
                 </Text>
             </View>
             <CardDetail data={{

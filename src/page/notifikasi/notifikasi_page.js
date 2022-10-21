@@ -1,51 +1,85 @@
-import { View, Text, TouchableOpacity } from 'react-native'
-import React,{useState} from 'react'
+import React, { useState, useEffect } from 'react'
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
 import stylesGlobal from '../../utils/style_global'
 import styles from '../notifikasi/notifikasi_style'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Feather from 'react-native-vector-icons/Feather'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { nullCount, listNotification } from '../../utils/api_link'
+import { useNavigation } from '@react-navigation/native'
+import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import Loading from '../../component/loading'
+import { convertnotivTime } from '../../utils/moment'
+
 const NotifikasiPage = () => {
-  const [notif,setNotif] = useState([
-    {
-      id:1,
-      notifikasi:'Melon Anda Sedang Tidak Sehat',
-      waktu:'1 Jam yang lalu',
-    },
-    {
-      id:1,
-      notifikasi:'Melon Anda Sedang Tidak Sehat',
-      waktu:'1 Jam yang lalu',
-    },
-  ])
-  return (
-    <View style={[styles.container,stylesGlobal.backgroundOnSecondary]}>
-    <View style={[stylesGlobal.backgroundPrimer,styles.topBar]}>
-      <View style={[styles.topBarContent]}>
-        <TouchableOpacity>
-          <MaterialIcons name="arrow-back" size={24} style={[stylesGlobal.onPrimary,styles.arrowBackIcon]} />
-        </TouchableOpacity>
-        <Text style={[stylesGlobal.onPrimary,stylesGlobal.header2]}>Notifikasi</Text>
-      </View>
-    </View>
-    {
-      notif.map((item,index) => {
-        return (
-          <View style={[stylesGlobal.backgroundOnSecondary,styles.notificationField]} key={index}>
-            <View style={[styles.notificationCard]}>
-              <View style={[stylesGlobal.backgroundPrimer,styles.iconCard]} >
-                <Feather name="alert-triangle" size={30} style={[stylesGlobal.onError]}/>
-              </View>
-              <View>
-                <Text style={[stylesGlobal.onBackground,stylesGlobal.header3]}>{item.notifikasi}</Text>
-                <Text style={[stylesGlobal.gray,stylesGlobal.header3]}>{item.waktu}</Text>
-              </View>
-            </View>
-          </View>
-        )
-      })    
+
+  const navigate = useNavigation()
+  const [list, setList] = useState(null)
+
+  const getListNotivication = (token) => {
+    axios.get(listNotification, {
+      headers: {
+        'Authorization': 'Bearer ' + token
       }
-  </View>
+    })
+      .then(respond => {
+        console.log(respond.data.data[0])
+        setList(respond.data.data)
+      })
+  }
+
+  const deleteCount = (token) => {
+    axios.post(nullCount, {}, {
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(note => { console.log(note) })
+  }
+
+  useEffect(() => {
+    AsyncStorage.getItem('token')
+      .then(token => {
+        getListNotivication(token)
+        deleteCount(token)
+
+      })
+  }, [])
+
+  return (
+    <View style={[styles.container, stylesGlobal.backgroundOnSecondary]}>
+      <View style={[stylesGlobal.backgroundPrimer, styles.topBar]}>
+        <View style={[styles.topBarContent]}>
+          <TouchableOpacity onPress={() => navigate.goBack()}>
+            <MaterialIcons name="arrow-back" size={24} style={[stylesGlobal.onPrimary, styles.arrowBackIcon]} />
+          </TouchableOpacity>
+          <Text style={[stylesGlobal.onPrimary, stylesGlobal.header2]}>Notifikasi</Text>
+        </View>
+      </View>
+      <ScrollView>
+        {
+          list == null ? <Loading /> :
+            list.map((item, index) => {
+              return (
+                <View style={[stylesGlobal.backgroundOnSecondary, styles.notificationField]} key={index}>
+                  <View style={[styles.notificationCard]}>
+                    <View style={[stylesGlobal.backgroundPrimer, styles.iconCard]} >
+                      <Feather name="alert-triangle" size={30} style={[stylesGlobal.onError]} />
+                    </View>
+                    <View>
+                      <Text style={[stylesGlobal.onBackground, stylesGlobal.header3]}>
+                        {item.detail}
+                      </Text>
+                      <Text style={[stylesGlobal.gray, stylesGlobal.header3]}>
+                        {convertnotivTime(item.created_at)}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              )
+            })
+        }
+      </ScrollView>
+    </View>
   )
 }
 

@@ -11,6 +11,7 @@ import ProgressCircle from 'react-native-progress-circle';
 import axios from 'axios';
 import { sensorBroker } from '../utils/api_link';
 import { useNavigation } from '@react-navigation/native';
+import { convertCreateAt } from '../utils/moment';
 
 const PersenMonitoring = (props) => {
 
@@ -20,12 +21,15 @@ const PersenMonitoring = (props) => {
     const [value, setValue] = useState(0)
     const [refresh, setRefresh] = useState(true)
     const [first, checkFirst] = useState(true)
+    const [date, setDate] = useState('')
 
     const onRefreshSatu = () => {
         setTimeout(() => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
+                    // setDate(response.data.data[0].updatedAt)
                     setValue(response.data.data[0].value)
+                    setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(true)
                 })
         }, 1000)
@@ -35,7 +39,9 @@ const PersenMonitoring = (props) => {
         setTimeout(() => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
+                    // setDate(response.data.data[0].updatedAt)
                     setValue(response.data.data[0].value)
+                    setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(false)
                 })
         }, 1000)
@@ -44,7 +50,9 @@ const PersenMonitoring = (props) => {
     const getDataApiWebBroker = () => {
         axios.get(sensorBroker + data.id)
             .then(response => {
+                // setDate(response.data.data[0].updatedAt)
                 setValue(response.data.data[0].value)
+                setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                 setRefresh(false)
             })
     }
@@ -133,7 +141,7 @@ const PersenMonitoring = (props) => {
 
                     </View>
                     <Text style={stylesGlobal.caption}>
-                        {data.tanggal}
+                        {date}
                     </Text>
                 </View>
 

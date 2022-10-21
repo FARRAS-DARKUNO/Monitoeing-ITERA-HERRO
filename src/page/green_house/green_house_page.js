@@ -39,7 +39,7 @@ const GreenHousePage = ({ route, navigation }) => {
     }
     useEffect(() => {
         getApiById()
-        // return () => console.log(dataGreenhouseById);
+        return () => setLoading(true);
     }, []);
     return (
         <>

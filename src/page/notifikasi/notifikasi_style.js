@@ -5,56 +5,56 @@ const styles = StyleSheet.create({
         // alignItems:"center",
         height: '100%',
         width: '100%',
-        flex:1,
+        flex: 1,
     },
-    topBar:{
+    topBar: {
         width: '100%',
         height: 60,
         flexDirection: 'row',
         alignItems: 'center',
     },
-    topBarContent:{
-        marginLeft:20,
-        marginLeft:20,
-        flexDirection:'row'
+    topBarContent: {
+        marginLeft: 20,
+        marginLeft: 20,
+        flexDirection: 'row'
     },
-    notificationField:{
-        marginHorizontal:20,
-        marginTop:20,
-        justifyContent:'center',
-        alignContent:'center'
+    notificationField: {
+
+        marginTop: 20,
+        justifyContent: 'center',
+        alignContent: 'center'
     },
-    notificationCard:{
-        flexDirection:'row',
-        alignContent:'center',
-        alignItems:'center'
+    notificationCard: {
+        flexDirection: 'row',
+        alignContent: 'center',
+        alignItems: 'center'
     },
-    arrowBackIcon:{
-        marginRight:20,
+    arrowBackIcon: {
+        marginRight: 20,
     },
-    iconCard:{
-        width:60,
-        height:60,
-        marginRight:25,
-        marginLeft:10,
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius:50
+    iconCard: {
+        width: 60,
+        height: 60,
+        marginRight: 25,
+        marginLeft: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50
     },
-    date:{
+    date: {
         width: '100%',
         height: '10%',
         flexDirection: 'column',
         justifyContent: 'space-between',
     },
-    scroll:{
+    scroll: {
         width: '100%',
         height: '100%',
-        flex:1,
+        flex: 1,
     },
-    shape:{
+    shape: {
         width: '100%',
-        height:'10%',
+        height: '10%',
         position: 'relative',
         borderBottomEndRadius: 90,
         borderBottomStartRadius: 90,

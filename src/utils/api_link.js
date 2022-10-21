@@ -20,3 +20,7 @@ export const riwayat = (id, month, year) => {
 export const yearData = 'https://iterahero.herokuapp.com/api/v1/grafik/year/'
 
 export const switchAkuator = 'https://iterahero.herokuapp.com/api/v1/actuator-log'
+
+export const notificationCount = 'https://iterahero.herokuapp.com/api/v1/notification-count'
+export const listNotification = 'https://iterahero.herokuapp.com/api/v1/notification?by_user_id=1'
+export const nullCount = 'https://iterahero.herokuapp.com/api/v1/notification-update'

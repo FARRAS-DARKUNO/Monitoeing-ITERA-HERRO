@@ -11,6 +11,7 @@ import stylesGlobal from '../utils/style_global';
 import axios from 'axios';
 import { sensorBroker } from '../utils/api_link';
 import { useNavigation } from '@react-navigation/native';
+import { convertCreateAt } from '../utils/moment';
 
 const DegreeMonitoring = (props) => {
 
@@ -19,6 +20,7 @@ const DegreeMonitoring = (props) => {
     const [value, setValue] = useState(-1)
     const [refresh, setRefresh] = useState(true)
     const [first, checkFirst] = useState(true)
+    const [date, setDate] = useState('')
 
     let dummie = 20
 
@@ -30,6 +32,7 @@ const DegreeMonitoring = (props) => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
                     setValue(response.data.data[0].value)
+                    setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(true)
                 })
         }, 1000)
@@ -40,6 +43,7 @@ const DegreeMonitoring = (props) => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
                     setValue(response.data.data[0].value)
+                    setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(false)
                 })
         }, 1000)
@@ -49,6 +53,7 @@ const DegreeMonitoring = (props) => {
         axios.get(sensorBroker + data.id)
             .then(response => {
                 setValue(response.data.data[0].value)
+                setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                 setRefresh(false)
             })
     }
@@ -136,7 +141,7 @@ const DegreeMonitoring = (props) => {
 
                     </View>
                     <Text style={stylesGlobal.caption}>
-                        {data.tanggal}
+                        {date}
                     </Text>
                 </View>
 
