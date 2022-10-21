@@ -10,6 +10,7 @@ import stylesGlobal from '../utils/style_global';
 import axios from 'axios';
 import { sensorBroker } from '../utils/api_link';
 import { useNavigation } from '@react-navigation/native';
+import { convertCreateAt } from '../utils/moment';
 
 const ElseMonitoring = (props) => {
 
@@ -20,12 +21,14 @@ const ElseMonitoring = (props) => {
     const [value, setValue] = useState(0)
     const [refresh, setRefresh] = useState(true)
     const [first, checkFirst] = useState(true)
+    const [date, setDate] = useState('')
 
     const onRefreshSatu = () => {
         setTimeout(() => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
                     setValue(response.data.data[0].value)
+                    setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(true)
                 })
         }, 1000)
@@ -36,6 +39,7 @@ const ElseMonitoring = (props) => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
                     setValue(response.data.data[0].value)
+                    setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(false)
                 })
         }, 1000)
@@ -45,6 +49,7 @@ const ElseMonitoring = (props) => {
         axios.get(sensorBroker + data.id)
             .then(response => {
                 setValue(response.data.data[0].value)
+                setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                 setRefresh(false)
             })
     }
@@ -52,11 +57,9 @@ const ElseMonitoring = (props) => {
     const onRefreshFinal = () => {
         if (refresh == false) {
             onRefreshSatu()
-            // console.log('satu')
         }
         if (refresh == true) {
             onRefreshDua()
-            // console.log('dua')
         }
     }
 
@@ -131,7 +134,7 @@ const ElseMonitoring = (props) => {
 
                     </View>
                     <Text style={stylesGlobal.caption}>
-                        {data.tanggal}
+                        {date}
                     </Text>
                 </View>
 

@@ -20,6 +20,7 @@ import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { firstDashboard, firstListGreenhouse } from '../../redux/action';
 import Loading from '../../component/loading';
+import { TimeBeranda } from '../../utils/moment';
 
 const BerandaPage = () => {
 
@@ -110,7 +111,7 @@ const BerandaPage = () => {
                         <View style={[stylesGlobal.backgroundBackground, stylesGlobal.backgroundPrimer, styles.date]}>
                             <View style={{ marginLeft: '5%' }}>
                                 <Text style={[stylesGlobal.onPrimary, stylesGlobal.caption]}>
-                                    {'Minggu,  05 Agustus 2022'}
+                                    {TimeBeranda()}
                                 </Text>
                             </View>
                             <View style={styles.greenHouseListTitleContainer}>
