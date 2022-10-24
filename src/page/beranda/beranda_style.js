@@ -22,8 +22,9 @@ const styles = StyleSheet.create({
     },
     scroll: {
         width: '100%',
-        height: '100%',
-        flex: 1,
+        height: '77%',
+        // backgroundColor: 'red',
+        // flex: 1,
     },
     shape: {
         width: '100%',
@@ -32,16 +33,21 @@ const styles = StyleSheet.create({
         borderBottomEndRadius: 0,
         borderBottomStartRadius: 0,
         top: 0,
+        borderBottomEndRadius: 15,
+        borderBottomStartRadius: 15,
+
     },
     greenHouseListTitleContainer: {
         marginHorizontal: '5%',
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
     },
     scrollContainer: {
         alignContent: 'center',
         alignItems: 'center',
-        bottom: 40
+        bottom: 60,
+        flex: 1,
+        // backgroundColor: 'red'
     },
     greenHouseCard: {
         borderRadius: 5,
@@ -58,11 +64,12 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         width: 362,
         height: 190,
-        borderRadius: 5
+        borderRadius: 5,
+        resizeMode: 'cover',
     },
     transparantBar: {
         width: '100%',
-        height: '3%',
+        height: '1%',
         top: 0,
         position: 'relative',
     },

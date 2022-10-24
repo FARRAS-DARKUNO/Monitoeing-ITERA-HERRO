@@ -5,7 +5,7 @@ import {
 const styles = StyleSheet.create({
     header: {
         width: '100%',
-        height: 90,
+        // height: 90,
         padding: 20,
         flexDirection: "column-reverse",
     },

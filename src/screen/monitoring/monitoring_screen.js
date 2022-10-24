@@ -18,6 +18,8 @@ const MonitoringScreen = (props) => {
 
     const dispatch = useDispatch()
 
+    const [isLoading, setIsloading] = useState(true)
+
     const { dataMonitoringByid, menuMoCon } = useSelector(
         state => state.userReducer,
     );
@@ -26,11 +28,13 @@ const MonitoringScreen = (props) => {
         AsyncStorage.getItem('token')
             .then(respons => {
                 dispatch(getMonitoringById(id, respons))
+                setIsloading(false)
             })
     }
 
     useEffect(() => {
         getApiById()
+        return () => setIsloading(true)
     }, [menuMoCon]);
 
 
@@ -38,8 +42,8 @@ const MonitoringScreen = (props) => {
     return (
         <>
             {
-                dataMonitoringByid != undefined ?
-                    <View style={{ height: '68%', width: '100%' }}>
+                dataMonitoringByid != undefined && isLoading == false ?
+                    <View style={{ height: '71%', width: '100%' }}>
                         <ScrollView>
                             <View style={styles.container}>
                                 {dataMonitoringByid != undefined ?

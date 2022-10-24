@@ -139,9 +139,11 @@ const BerandaPage = () => {
                                                 >
                                                     <View
                                                         style={[stylesGlobal.backgroundOnPrimary, styles.greenHouseCard]}>
-                                                        <Image source={{
-                                                            uri: item.image,
-                                                        }} style={styles.greenHousePicture}
+                                                        <Image
+
+                                                            source={{ uri: item.image, }}
+
+                                                            style={styles.greenHousePicture}
                                                         />
                                                         <Text style={[stylesGlobal.primer, stylesGlobal.header3, { bottom: 10 }]}>
                                                             {item.name}
@@ -149,12 +151,7 @@ const BerandaPage = () => {
                                                     </View>
                                                 </TouchableWithoutFeedback>
 
-                                                <View style={[stylesGlobal.backgroundBackground, styles.transparantBar]}>
-                                                    <Text>
-                                                    </Text>
-                                                </View>
-
-
+                                                <View style={[stylesGlobal.backgroundBackground, styles.transparantBar]} />
                                             </>
 
                                         )

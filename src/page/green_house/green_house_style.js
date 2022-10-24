@@ -5,15 +5,16 @@ import {
 
 const styles = StyleSheet.create({
     container: {
-        height: 250,
+        height: 230,
         width: "100%",
         marginBottom: 10,
     },
     imageBackgroundPlus: {
-        backgroundColor: '( rgba(0, 0, 0, 0.2)',
+        backgroundColor: '( rgba(0, 0, 0, 0.4)',
         flex: 1,
         paddingHorizontal: 20,
-        paddingTop: 30,
+        paddingTop: 15,
+
     },
     backView: {
         width: '70%',

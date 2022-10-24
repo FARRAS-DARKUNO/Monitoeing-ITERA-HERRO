@@ -51,19 +51,19 @@ const GreenHousePage = ({ route, navigation }) => {
                             animated={true}
                             backgroundColor={'#09322D'} />
                         <ImageBackground
-                            resizeMode="cover"
+                            resizeMode='cover'
                             source={{ uri: dataGreenhouseById.data.image }}
                             style={styles.container}
                         >
-                            <TouchableOpacity style={styles.imageBackgroundPlus} onPress={() => navigation.goBack()}>
-                                <View style={styles.backView}>
+                            <View style={styles.imageBackgroundPlus} >
+                                <TouchableOpacity style={styles.backView} onPress={() => navigation.goBack()}>
                                     <Icon name="arrow-back" size={24} color="#ffff" />
                                     <View style={stylesGlobal.space10} />
                                     <Text style={[stylesGlobal.header2, { color: '#ffff' }]}>
                                         {dataGreenhouseById.data.name}
                                     </Text>
-                                </View>
-                            </TouchableOpacity>
+                                </TouchableOpacity>
+                            </View>
                         </ImageBackground>
 
                         <View style={styles.monitoringAndControlling}>

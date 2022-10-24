@@ -108,7 +108,7 @@ const PersenMonitoring = (props) => {
                             shadowColor="#F2F2F2"
                             bgColor="#fff"
                         >
-                            <Text style={{ fontSize: 14 }}>{value}{'%'}</Text>
+                            <Text style={{ fontSize: 14, color: '#000' }}>{value}{'%'}</Text>
                         </ProgressCircle> :
                         <ProgressCircle
                             percent={value}

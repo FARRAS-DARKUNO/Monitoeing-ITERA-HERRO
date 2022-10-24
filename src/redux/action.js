@@ -105,7 +105,7 @@ export const getApiGeenhouseById = (id, token) => {
 export const getMonitoringById = (id, token) => {
 
     return async dispatch => {
-        return await axios.get(monitoringApi + id, {
+        return await axios.get(monitoringApi + id + '&&size=100', {
             headers: {
                 'Authorization': 'Bearer ' + token
             }
