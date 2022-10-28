@@ -54,17 +54,17 @@ const CardMonitoring = (props) => {
     return (
         <>
 
-            {
-                !isLoading ?
-                    <View style={styles.card}>
-                        <View style={styles.titleAndIcon}>
-                            <Image style={styles.imageIcon} source={{ uri: data.icon }} />
-                            <View style={stylesGlobal.space10} />
-                            <Text style={[stylesGlobal.header2, stylesGlobal.primer]}>
-                                {data.name}
-                            </Text>
-                        </View>
+            <View style={styles.card}>
+                <View style={styles.titleAndIcon}>
+                    <Image style={styles.imageIcon} source={{ uri: data.icon }} />
+                    <View style={stylesGlobal.space10} />
+                    <Text style={[stylesGlobal.header2, stylesGlobal.primer]}>
+                        {data.name}
+                    </Text>
+                </View>
 
+                {
+                    !isLoading ?
                         <Switch
                             trackColor={{ false: "#767577", true: "#D3D3D3" }}
                             thumbColor={isEnabled ? "green" : "#f4f3f4"}
@@ -76,9 +76,9 @@ const CardMonitoring = (props) => {
                             value={isEnabled}
                         />
 
-                    </View> :
-                    <Loading />
-            }
+                        : <Loading />
+                }
+            </View>
 
         </>
     )
