@@ -57,7 +57,7 @@ const CardDetail = (props) => {
 
                 <View style={styles.checkOn}>
                     {
-                        data.status == 1 ?
+                        data.status == 'online' ?
                             <>
                                 <View style={[{ height: 10, width: 10, borderRadius: 100 }, stylesGlobal.backgroundSecondary]} />
                                 <Text style={[stylesGlobal.caption, stylesGlobal.primer]}> Online</Text>

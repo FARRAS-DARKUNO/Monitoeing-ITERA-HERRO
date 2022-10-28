@@ -22,12 +22,13 @@ const PersenMonitoring = (props) => {
     const [refresh, setRefresh] = useState(true)
     const [first, checkFirst] = useState(true)
     const [date, setDate] = useState('')
+    const [status, setStatus] = useState('offline')
 
     const onRefreshSatu = () => {
         setTimeout(() => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
-                    // setDate(response.data.data[0].updatedAt)
+                    setStatus(response.data.data[0].status)
                     setValue(response.data.data[0].value)
                     setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(true)
@@ -39,7 +40,7 @@ const PersenMonitoring = (props) => {
         setTimeout(() => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
-                    // setDate(response.data.data[0].updatedAt)
+                    setStatus(response.data.data[0].status)
                     setValue(response.data.data[0].value)
                     setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(false)
@@ -50,7 +51,7 @@ const PersenMonitoring = (props) => {
     const getDataApiWebBroker = () => {
         axios.get(sensorBroker + data.id)
             .then(response => {
-                // setDate(response.data.data[0].updatedAt)
+                setStatus(response.data.data[0].status)
                 setValue(response.data.data[0].value)
                 setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                 setRefresh(false)
@@ -128,7 +129,7 @@ const PersenMonitoring = (props) => {
                             {'Status : '}
                         </Text>
                         {
-                            data.status == 1 ?
+                            status == 'online' ?
                                 <Text style={[stylesGlobal.caption, stylesGlobal.secondary]}>
                                     online
                                 </Text> :

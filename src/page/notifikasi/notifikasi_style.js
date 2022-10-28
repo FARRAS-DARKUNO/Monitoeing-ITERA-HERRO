@@ -15,14 +15,12 @@ const styles = StyleSheet.create({
     },
     topBarContent: {
         marginLeft: 20,
-        marginLeft: 20,
         flexDirection: 'row'
     },
     notificationField: {
-
         marginTop: 20,
-        justifyContent: 'center',
-        alignContent: 'center'
+        // justifyContent: 'center',
+        // alignContent: 'center'
     },
     notificationCard: {
         flexDirection: 'row',
@@ -35,11 +33,11 @@ const styles = StyleSheet.create({
     iconCard: {
         width: 60,
         height: 60,
-        marginRight: 25,
+        marginRight: 10,
         marginLeft: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 50
+        borderRadius: 100
     },
     date: {
         width: '100%',

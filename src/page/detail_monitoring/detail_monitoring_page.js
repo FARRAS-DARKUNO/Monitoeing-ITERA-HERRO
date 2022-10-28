@@ -30,11 +30,13 @@ const DetailMonitoringPage = () => {
     const [refresh, setRefresh] = useState(true)
     const [first, checkFirst] = useState(true)
     const [date, setDate] = useState('')
+    const [status, setStatus] = useState('offline')
 
     const onRefreshSatu = () => {
         setTimeout(() => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
+                    setStatus(response.data.data[0].status)
                     setValue(response.data.data[0].value)
                     setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(true)
@@ -46,6 +48,7 @@ const DetailMonitoringPage = () => {
         setTimeout(() => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
+                    setStatus(response.data.data[0].status)
                     setValue(response.data.data[0].value)
                     setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(false)
@@ -56,6 +59,7 @@ const DetailMonitoringPage = () => {
     const getDataApiWebBroker = () => {
         axios.get(sensorBroker + data.id)
             .then(response => {
+                setStatus(response.data.data[0].status)
                 setValue(response.data.data[0].value)
                 setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                 setRefresh(false)
@@ -87,11 +91,6 @@ const DetailMonitoringPage = () => {
         state => state.userReducer,
     );
 
-    let dataDummie = {
-        status: 1,
-    }
-
-
     return (
         <SafeAreaView style={stylesGlobal.surface}>
             <StatusBar
@@ -118,7 +117,7 @@ const DetailMonitoringPage = () => {
             <CardDetail data={{
                 icon: data.icon,
                 color: data.color,
-                status: dataDummie.status,
+                status: status,
                 value: value,
                 jenis: data.jenis,
                 unit: data.unit,

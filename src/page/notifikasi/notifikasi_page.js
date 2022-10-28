@@ -47,12 +47,10 @@ const NotifikasiPage = () => {
   return (
     <View style={[styles.container, stylesGlobal.backgroundOnSecondary]}>
       <View style={[stylesGlobal.backgroundPrimer, styles.topBar]}>
-        <View style={[styles.topBarContent]}>
-          <TouchableOpacity onPress={() => navigate.goBack()}>
-            <MaterialIcons name="arrow-back" size={24} style={[stylesGlobal.onPrimary, styles.arrowBackIcon]} />
-          </TouchableOpacity>
+        <TouchableOpacity style={[styles.topBarContent]} onPress={() => navigate.goBack()}>
+          <MaterialIcons name="arrow-back" size={24} style={[stylesGlobal.onPrimary, styles.arrowBackIcon]} />
           <Text style={[stylesGlobal.onPrimary, stylesGlobal.header2]}>Notifikasi</Text>
-        </View>
+        </TouchableOpacity>
       </View>
       <ScrollView>
         {
@@ -64,7 +62,7 @@ const NotifikasiPage = () => {
                     <View style={[stylesGlobal.backgroundPrimer, styles.iconCard]} >
                       <Feather name="alert-triangle" size={30} style={[stylesGlobal.onError]} />
                     </View>
-                    <View>
+                    <View style={{ width: '78%' }}>
                       <Text style={[stylesGlobal.onBackground, stylesGlobal.header3]}>
                         {item.detail}
                       </Text>

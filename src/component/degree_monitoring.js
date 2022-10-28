@@ -21,6 +21,7 @@ const DegreeMonitoring = (props) => {
     const [refresh, setRefresh] = useState(true)
     const [first, checkFirst] = useState(true)
     const [date, setDate] = useState('')
+    const [status, setStatus] = useState('offline')
 
     let data = props.data
 
@@ -28,6 +29,7 @@ const DegreeMonitoring = (props) => {
         setTimeout(() => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
+                    setStatus(response.data.data[0].status)
                     setValue(response.data.data[0].value)
                     setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(true)
@@ -39,6 +41,7 @@ const DegreeMonitoring = (props) => {
         setTimeout(() => {
             axios.get(sensorBroker + data.id)
                 .then(response => {
+                    setStatus(response.data.data[0].status)
                     setValue(response.data.data[0].value)
                     setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                     setRefresh(false)
@@ -49,6 +52,7 @@ const DegreeMonitoring = (props) => {
     const getDataApiWebBroker = () => {
         axios.get(sensorBroker + data.id)
             .then(response => {
+                setStatus(response.data.data[0].status)
                 setValue(response.data.data[0].value)
                 setDate(() => convertCreateAt(response.data.data[0].updatedAt))
                 setRefresh(false)
@@ -125,7 +129,7 @@ const DegreeMonitoring = (props) => {
                             {'Status : '}
                         </Text>
                         {
-                            data.status == 1 ?
+                            status == 'online' ?
                                 <Text style={[stylesGlobal.caption, stylesGlobal.secondary]}>
                                     online
                                 </Text> :

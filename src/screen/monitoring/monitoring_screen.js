@@ -55,14 +55,11 @@ const MonitoringScreen = (props) => {
                                                     icon: placement.icon,
                                                     color: placement.color,
                                                     name: placement.name,
-                                                    status: 1,
                                                     jenis: 'Persen',
                                                     unit: placement.unit_measurement,
-                                                    value: 50,
                                                     id: placement.id,
                                                     range_min: placement.range_min,
                                                     range_max: placement.range_max,
-                                                    topic_broker: placement.topic_broker
                                                 }} />
                                             )
                                         }
@@ -74,14 +71,11 @@ const MonitoringScreen = (props) => {
                                                     icon: placement.icon,
                                                     color: placement.color,
                                                     name: placement.name,
-                                                    status: 1,
                                                     jenis: 'Derajat',
                                                     unit: placement.unit_measurement,
-                                                    value: 50,
                                                     id: placement.id,
                                                     range_min: placement.range_min,
                                                     range_max: placement.range_max,
-                                                    topic_broker: placement.topic_broker
                                                 }} />
                                             )
                                         }
@@ -92,14 +86,11 @@ const MonitoringScreen = (props) => {
                                                     icon: placement.icon,
                                                     color: placement.color,
                                                     name: placement.name,
-                                                    status: 1,
                                                     jenis: 'Lainnya',
                                                     unit: placement.unit_measurement,
-                                                    value: 50,
                                                     id: placement.id,
                                                     range_min: placement.range_min,
                                                     range_max: placement.range_max,
-                                                    topic_broker: placement.topic_broker
                                                 }} />
                                             )
                                         }

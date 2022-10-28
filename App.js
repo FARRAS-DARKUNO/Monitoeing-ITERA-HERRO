@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 //page
@@ -7,16 +7,25 @@ import GreenHousePage from './src/page/green_house/green_house_page';
 import DetailMonitoringPage from './src/page/detail_monitoring/detail_monitoring_page';
 import LoginPage from './src/page/login/login_page';
 import SplashScreen from './src/page/splash_screen/splash_page';
+import NotifikasiPage from './src/page/notifikasi/notifikasi_page';
 //redux
 import { Provider } from 'react-redux';
 import { Store } from './src/redux/store';
-import NotifikasiPage from './src/page/notifikasi/notifikasi_page';
 // import NoHaveInternetPage from './src/page/no_have_internet/no_have_internet_page';
+
+//notification
+import Firebase from '@react-native-firebase/app'
+import PushNotification from "react-native-push-notification";
 
 const Stack = createNativeStackNavigator();
 
 
 const App = () => {
+
+  Firebase.initializeApp()
+
+
+
   return (
     <Provider store={Store}>
       <NavigationContainer>
