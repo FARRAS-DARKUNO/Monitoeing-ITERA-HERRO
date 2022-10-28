@@ -10,11 +10,13 @@ import stylesGlobal from '../utils/style_global';
 import axios from 'axios';
 import { switchAkuator } from '../utils/api_link';
 import Loading from './loading';
+import { akuatorBroker } from '../utils/api_link';
 
 const CardMonitoring = (props) => {
 
     const data = props.data
     const [isLoading, setIsloading] = useState(false)
+    const [isOnline, setIsOnlone] = useState('offline')
 
     const valueSwitchConvert = () => {
         if (data.status_lifecycle == 1) {
@@ -23,6 +25,18 @@ const CardMonitoring = (props) => {
         else {
             return false
         }
+    }
+
+    const getStatus = () => {
+        axios.get(akuatorBroker + data.id)
+            .then(respon => {
+                if (respon.data.data.length > 0) {
+                    setIsOnlone(respon.data.data[0].status)
+                }
+                if (respon.data.data.length == 0) {
+                    setIsOnlone('offline')
+                }
+            })
     }
 
 
@@ -51,6 +65,10 @@ const CardMonitoring = (props) => {
         }
     };
 
+    useEffect(() => {
+        getStatus()
+    }, [])
+
     return (
         <>
 
@@ -65,17 +83,22 @@ const CardMonitoring = (props) => {
 
                 {
                     !isLoading ?
-                        <Switch
-                            trackColor={{ false: "#767577", true: "#D3D3D3" }}
-                            thumbColor={isEnabled ? "green" : "#f4f3f4"}
-                            ios_backgroundColor="#3e3e3e"
-                            onValueChange={() => {
-                                setIsloading(true)
-                                toggleSwitch()
-                            }}
-                            value={isEnabled}
-                        />
-
+                        <View style={styles.switch}>
+                            {
+                                isOnline == 'online' ?
+                                    <Switch
+                                        trackColor={{ false: "#767577", true: "#D3D3D3" }}
+                                        thumbColor={isEnabled ? "green" : "#f4f3f4"}
+                                        ios_backgroundColor="#3e3e3e"
+                                        onValueChange={() => {
+                                            setIsloading(true)
+                                            toggleSwitch()
+                                        }}
+                                        value={isEnabled}
+                                    /> :
+                                    <Text style={stylesGlobal.error}> offline </Text>
+                            }
+                        </View>
                         : <Loading />
                 }
             </View>
@@ -110,6 +133,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    switch: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 });
 
 export default CardMonitoring

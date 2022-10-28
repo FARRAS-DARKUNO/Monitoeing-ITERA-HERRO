@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
     View,
     ScrollView,
+    RefreshControl
 } from 'react-native';
 import styles from './controlling_style';
 import CardMonitoring from '../../component/card_monitoring';
@@ -10,9 +11,34 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getControllingById } from '../../redux/action';
 import Loading from '../../component/loading';
 
+const wait = (timeout) => {
+    return new Promise(resolve => {
+        setTimeout(resolve, timeout)
+    });
+}
+
 const ContrillingScreen = (props) => {
 
+    const [refreshing, setRefreshing] = useState(false);
+    const [isLoading, setLoading] = useState(true);
+
     const id = props.data.idData
+
+    const onRefresh = useCallback(() => {
+        setLoading(true)
+        setRefreshing(true);
+        AsyncStorage.getItem('token')
+            .then(respons => {
+                dispatch(getControllingById(id, respons))
+            })
+        wait(3000).then(() => {
+            setRefreshing(false)
+            setLoading(false)
+
+        });
+    }, []);
+
+
 
     const dispatch = useDispatch()
 
@@ -24,6 +50,7 @@ const ContrillingScreen = (props) => {
         AsyncStorage.getItem('token')
             .then(respons => {
                 dispatch(getControllingById(id, respons))
+                setLoading(false)
             })
     }
 
@@ -35,9 +62,16 @@ const ContrillingScreen = (props) => {
     return (
         <>
             {
-                dataControllingByid != undefined ?
+                dataControllingByid != undefined && isLoading == false ?
                     <View style={styles.container}>
-                        <ScrollView>
+                        <ScrollView
+                            refreshControl={
+                                <RefreshControl
+                                    refreshing={refreshing}
+                                    onRefresh={onRefresh}
+                                />
+                            }
+                        >
                             {dataControllingByid != undefined ?
                                 dataControllingByid.map((value) => {
                                     return (

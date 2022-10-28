@@ -1,26 +1,22 @@
-export const loginApi = 'https://iterahero.herokuapp.com/api/v1/login'
-export const listGreenhouse = 'https://iterahero.herokuapp.com/api/v1/greenhouse?size=100'
-export const dashboardApi = 'https://iterahero.herokuapp.com/api/v1/dashboard'
-export const greenhouseByUserId = 'https://iterahero.herokuapp.com/api/v1/greenhouse/'
-export const controllingApi = 'https://iterahero.herokuapp.com/api/v1/actuator?by_greenhouse_id='
-export const monitoringApi = 'https://iterahero.herokuapp.com/api/v1/sensor?by_id_greenhouse='
-export const deleteGreenhouse = 'https://iterahero.herokuapp.com/api/v1/greenhouse/'
-export const updateGreenhouse = 'https://iterahero.herokuapp.com/api/v1/greenhouse/'
-export const sensorBroker = 'https://iterahero.herokuapp.com/api/v1/sensor_broker?id_sensor='
+const link = 'https://iterahero.herokuapp.com/api/v1'
 
-export const grafikSensor = 'https://iterahero.herokuapp.com/api/v1/grafik/'
+export const loginApi = link + '/login'
+export const listGreenhouse = link + '/greenhouse?size=100'
+export const dashboardApi = link + '/dashboard'
+export const greenhouseByUserId = link + '/greenhouse/'
+export const controllingApi = link + '/actuator?by_greenhouse_id='
+export const monitoringApi = link + '/sensor?by_id_greenhouse='
+export const deleteGreenhouse = link + '/greenhouse/'
+export const updateGreenhouse = link + '/greenhouse/'
+export const sensorBroker = link + '/sensor_broker?id_sensor='
+export const grafikSensor = link + '/grafik/'
 export const subGrafikSensor = '?getDateQuery='
-
-// export const riwayat = 'https://iterahero.herokuapp.com/api/v1/history/sensor/93?Month=10&Year=2022'
-
 export const riwayat = (id, month, year) => {
-    return 'https://iterahero.herokuapp.com/api/v1/history/sensor/' + id + '?Month=' + month + '&Year=' + year
+    return link + '/history/sensor/' + id + '?Month=' + month + '&Year=' + year
 }
-
-export const yearData = 'https://iterahero.herokuapp.com/api/v1/grafik/year/'
-
-export const switchAkuator = 'https://iterahero.herokuapp.com/api/v1/actuator-log'
-
-export const notificationCount = 'https://iterahero.herokuapp.com/api/v1/notification-count'
-export const listNotification = 'https://iterahero.herokuapp.com/api/v1/notification?by_user_id=1'
-export const nullCount = 'https://iterahero.herokuapp.com/api/v1/notification-update'
+export const yearData = link + '/grafik/year/'
+export const switchAkuator = link + '/actuator-log'
+export const akuatorBroker = link + '/actuator-broker?id_actuator=' //+id
+export const notificationCount = link + '/notification-count'
+export const listNotification = link + '/notification?by_user_id=1'
+export const nullCount = link + '/notification-update'
