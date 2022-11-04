@@ -17,6 +17,7 @@ import axios from 'axios';
 import { loginApi } from '../../utils/api_link';
 import { useNavigation } from '@react-navigation/native';
 import Loading from '../../component/loading';
+import CreateBy from '../../component/createBy';
 
 const LoginPage = () => {
 
@@ -149,6 +150,7 @@ const LoginPage = () => {
                 }}
               </Formik>
             </View>
+            <CreateBy />
           </View>
       }
     </>

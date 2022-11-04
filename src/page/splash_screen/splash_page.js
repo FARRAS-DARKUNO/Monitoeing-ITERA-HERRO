@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useNavigation } from "@react-navigation/native"
 import axios from 'axios';
 import { listGreenhouse, dashboardApi } from '../../utils/api_link';
+import CreateBy from '../../component/createBy';
 
 const SplashScreen = () => {
 
@@ -87,6 +88,7 @@ const SplashScreen = () => {
   return (
 
     <SafeAreaView style={SplashScreenStyle.container}>
+      <View />
       <View style={SplashScreenStyle.content}>
         <Image
           style={SplashScreenStyle.logo}
@@ -94,6 +96,7 @@ const SplashScreen = () => {
             require('../../../assets/images/Logo.png')
           } />
       </View>
+      <CreateBy />
     </SafeAreaView>
   )
 

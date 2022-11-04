@@ -6,13 +6,15 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 60,
         alignItems: 'center',
-        height : '100%',
-        width : '100%',
+        height: '85%',
+        width: '100%',
+        justifyContent: 'space-between',
+        flexDirection: 'column'
     },
     content: {
         width: '80%',
-        height: '100%',
-        
+        // height: '100%',
+
     },
 });
 

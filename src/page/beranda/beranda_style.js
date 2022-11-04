@@ -1,11 +1,8 @@
 import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
     container: {
-        // alignItems:"center",
         height: '100%',
         width: '100%',
-        flex: 1,
-        // backgroundColor: 'black'
     },
     profile: {
         width: '100%',
@@ -23,8 +20,6 @@ const styles = StyleSheet.create({
     scroll: {
         width: '100%',
         height: '77%',
-        // backgroundColor: 'red',
-        // flex: 1,
     },
     shape: {
         width: '100%',
@@ -65,7 +60,6 @@ const styles = StyleSheet.create({
         width: 362,
         height: 190,
         borderRadius: 5,
-        resizeMode: 'cover',
     },
     transparantBar: {
         width: '100%',

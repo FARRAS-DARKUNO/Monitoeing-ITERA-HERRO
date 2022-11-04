@@ -7,16 +7,16 @@ const SplashScreenStyle = StyleSheet.create({
         height: '100%',
         backgroundColor: '#FCFFFC',
         padding: 0,
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         alignItems: 'center',
     },
     content: {
         alignItems: 'center',
         justifyContent: 'center',
-        height: '80%',
+        height: '40%',
         width: '70%',
-      },
-    logo:{
+    },
+    logo: {
         // paddingHorizontal: 90
         width: "100%",
         height: 80,
