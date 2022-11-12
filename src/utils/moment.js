@@ -45,7 +45,10 @@ export const convertCreateAt = (data) => {
 export const convertnotivTime = (data) => {
 
     let temp = data.replace('T', " ").replace("Z", " +0700");
-    let convert = moment(temp, "YYYYMMDD").fromNow();
+    let convert = moment().subtract(temp, 'days').calendar()
+
+
+    // console.log(moment().subtract(temp, 'days').calendar())
 
     return convert
 }
