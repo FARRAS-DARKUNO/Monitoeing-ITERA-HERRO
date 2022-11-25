@@ -174,7 +174,8 @@ const styles = StyleSheet.create({
     titleAndIcon: {
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        padding : 2,
     },
     imageIcon: {
         height: 24,

@@ -110,7 +110,7 @@ const CardMonitoring = (props) => {
 const styles = StyleSheet.create({
     card: {
         width: '100%',
-        height: 60,
+        height: 65,
         backgroundColor: '#ffff',
         borderRadius: 10,
         borderColor: '#171717',
