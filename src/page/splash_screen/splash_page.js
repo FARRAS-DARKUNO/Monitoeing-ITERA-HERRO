@@ -81,7 +81,7 @@ const SplashScreen = () => {
 
 
   useEffect(() => {
-    checkDataToken()
+    // checkDataToken()
   }, []);
 
 
