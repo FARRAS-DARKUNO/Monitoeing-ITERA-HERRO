@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   BackHandler,
   Alert,
+  Image
 } from 'react-native';
 import stylesGlobal from '../../utils/style_global';
 import styles from './login_style';
@@ -38,7 +39,7 @@ const LoginPage = () => {
           AsyncStorage.setItem('token', response.data.data.accessToken)
             .then(() => {
               setLoading(false)
-              navigation.navigate('BerandaPage')
+              navigation.navigate('SplashScreen')
             })
         }
       })
@@ -150,7 +151,18 @@ const LoginPage = () => {
                 }}
               </Formik>
             </View>
-            <CreateBy />
+            {/* <CreateBy /> */}
+            
+            <View>
+              <Image
+          
+          style={{ width : 200,
+        height: 120,
+      }}
+          source={
+            require('../../../assets/images/Logo.png')
+          } />
+            </View>
           </View>
       }
     </>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { View, Image, SafeAreaView } from 'react-native'
+import { View, Image, SafeAreaView,TouchableNativeFeedback } from 'react-native'
 import SplashScreenStyle from './splash_page_style'
 import { useSelector, useDispatch } from 'react-redux';
 import { getApiListGreenhouse, getApiDashboard } from '../../redux/action'
@@ -17,7 +17,7 @@ const SplashScreen = () => {
 
   const checkDataToken = async () => {
     await AsyncStorage.getItem('token').then(async value => {
-      if (value !== null) {
+      if (value !== null || value !== '') {
         await axios.get(dashboardApi, {
           headers: {
             'Authorization': 'Bearer ' + value
@@ -81,22 +81,26 @@ const SplashScreen = () => {
 
 
   useEffect(() => {
-    // checkDataToken()
-  }, []);
+    checkDataToken()
+  },[]);
 
 
   return (
 
     <SafeAreaView style={SplashScreenStyle.container}>
       <View />
-      <View style={SplashScreenStyle.content}>
+      <View style={SplashScreenStyle.content} >
+        <TouchableNativeFeedback onPress={checkDataToken}>
         <Image
+          
           style={SplashScreenStyle.logo}
           source={
             require('../../../assets/images/Logo.png')
           } />
+        </TouchableNativeFeedback>
       </View>
-      <CreateBy />
+      {/* <CreateBy /> */}
+      <View />
     </SafeAreaView>
   )
 
